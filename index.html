@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#003da5">
+<title>CATHS-MAIN SSLG</title>
+
+<link rel="icon" href="icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#003da5;
+  --blue2:#0b66ff;
+  --ink:#10233f;
+  --muted:#64748b;
+  --line:#dfe8f7;
+  --white:#ffffff;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Poppins,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top right,rgba(158,202,255,.28),transparent 30%),
+    linear-gradient(180deg,#eef6ff 0%,#fff 45%,#f7fbff 100%);
+  overflow-x:hidden;
+}
+
+.container{
+  width:min(1160px,92%);
+  margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+nav{
+  width:100%;
+  min-height:82px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.brand-area{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.brand-logo{
+  width:44px;
+  height:44px;
+  flex:0 0 44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.brand-logo img{
+  width:44px;
+  height:44px;
+  display:block;
+  object-fit:contain;
+}
+
+.brand-divider{
+  width:1px;
+  height:30px;
+  background:#d7e1ef;
+  flex:0 0 1px;
+}
+
+.brand-name{
+  color:var(--blue);
+  font-size:19px;
+  font-weight:800;
+  letter-spacing:-.4px;
+  white-space:nowrap;
+}
+
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  margin-left:auto;
+}
+
+.navlinks a{
+  text-decoration:none;
+  color:#53657d;
+  font-size:14px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.navlinks a:hover{
+  color:var(--blue);
+}
+
+.header-button{
+  flex:0 0 auto;
+  white-space:nowrap;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  border:none;
+  border-radius:15px;
+  padding:14px 20px;
+  font:700 14px Poppins,sans-serif;
+  text-decoration:none;
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  box-shadow:0 14px 28px rgba(0,61,165,.24);
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 18px 32px rgba(0,61,165,.3);
+}
+
+.btn-ghost{
+  background:#fff;
+  color:var(--blue);
+  border:1px solid var(--line);
+}
+
+.btn-ghost:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(20,70,140,.08);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  padding:56px 0 55px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:60px;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:#e9f2ff;
+  color:var(--blue);
+  border:1px solid #cfe1ff;
+  padding:8px 13px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+}
+
+h1{
+  font-size:clamp(42px,6vw,72px);
+  line-height:1.02;
+  letter-spacing:-2.8px;
+  margin:18px 0 16px;
+}
+
+.grad{
+  color:var(--blue);
+}
+
+.hero p{
+  max-width:620px;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.8;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:28px 0 18px;
+}
+
+.trust{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  color:#708098;
+  font-size:12px;
+  font-weight:600;
+}
+
+/* =========================
+   HERO PHONE
+========================= */
+
+.phone-wrap{
+  position:relative;
+  display:flex;
+  justify-content:center;
+}
+
+.glow{
+  position:absolute;
+  inset:12% 8%;
+  background:radial-gradient(circle,#a5caff 0%,transparent 66%);
+  filter:blur(10px);
+  opacity:.7;
+}
+
+.phone{
+  position:relative;
+  width:min(320px,78vw);
+  background:#07162b;
+  border:8px solid #07162b;
+  padding:8px;
+  border-radius:40px;
+  box-shadow:0 34px 80px rgba(18,54,111,.28);
+  animation:float 5s ease-in-out infinite;
+}
+
+.screen{
+  min-height:575px;
+  background:#f8fbff;
+  overflow:hidden;
+  border-radius:29px;
+}
+
+.topbar{
+  color:#fff;
+  padding:30px 18px 22px;
+  background:linear-gradient(135deg,#003da5,#0965ff);
+}
+
+.mini-brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:14px;
+  font-weight:800;
+}
+
+.mini-brand img{
+  width:31px;
+  height:31px;
+  object-fit:contain;
+}
+
+.screen-title{
+  margin-top:27px;
+  font-size:22px;
+  font-weight:800;
+}
+
+.screen-sub{
+  margin-top:4px;
+  font-size:11px;
+  opacity:.86;
+}
+
+.cards{
+  padding:16px;
+}
+
+.card{
+  padding:14px;
+  margin-bottom:12px;
+  background:#fff;
+  border:1px solid #e5edf8;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(25,56,102,.06);
+}
+
+.card strong{
+  display:block;
+  margin-bottom:7px;
+  font-size:12px;
+}
+
+.line{
+  height:8px;
+  background:#edf3fb;
+  border-radius:999px;
+  margin:5px 0;
+}
+
+.line.short{
+  width:65%;
+}
+
+.navmock{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  padding:12px;
+  border-top:1px solid #e6edf8;
+  background:#fff;
+}
+
+.navmock span{
+  text-align:center;
+  font-size:17px;
+}
+
+.navmock small{
+  display:block;
+  margin-top:4px;
+  color:#708097;
+  font-size:8px;
+}
+
+@keyframes float{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-10px);
+  }
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+  padding:84px 0;
+}
+
+.section-head{
+  max-width:720px;
+  margin:0 auto 42px;
+  text-align:center;
+}
+
+.section-head h2{
+  margin:0 0 10px;
+  font-size:36px;
+}
+
+.section-head p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.feature{
+  padding:22px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:0 10px 30px rgba(24,61,115,.05);
+  transition:.25s ease;
+}
+
+.feature:hover{
+  transform:translateY(-5px);
+  box-shadow:0 17px 35px rgba(24,61,115,.09);
+}
+
+.icon{
+  width:50px;
+  height:50px;
+  display:grid;
+  place-items:center;
+  background:#eaf2ff;
+  border-radius:15px;
+  font-size:23px;
+}
+
+.feature h3{
+  margin:16px 0 7px;
+  font-size:16px;
+}
+
+.feature p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.75;
+}
+
+/* =========================
+   INSTALL
+========================= */
+
+.install-section{
+  padding-top:95px;
+}
+
+.install-phones{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+  align-items:start;
+}
+
+.install-item{
+  text-align:center;
+}
+
+.install-phone{
+  position:relative;
+  width:min(290px,100%);
+  margin:0 auto;
+  padding:8px;
+  border-radius:36px;
+  background:#07162b;
+  border:7px solid #07162b;
+  box-shadow:0 26px 55px rgba(15,49,100,.20);
+  transition:.3s ease;
+}
+
+.install-phone:hover{
+  transform:translateY(-8px);
+  box-shadow:0 35px 65px rgba(15,49,100,.25);
+}
+
+.install-phone img{
+  display:block;
+  width:100%;
+  aspect-ratio:9/18.5;
+  object-fit:cover;
+  object-position:center;
+  border-radius:27px;
+  background:#edf4ff;
+}
+
+.step-content{
+  margin-top:22px;
+  padding:0 12px;
+}
+
+.step-number{
+  width:42px;
+  height:42px;
+  margin:0 auto 13px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:#fff;
+  font-size:16px;
+  font-weight:800;
+  box-shadow:0 10px 25px rgba(0,61,165,.22);
+}
+
+.step-content h3{
+  margin:0 0 8px;
+  font-size:19px;
+}
+
+.step-content p{
+  margin:0 auto;
+  max-width:290px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+}
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+.download{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+  overflow:hidden;
+  padding:48px;
+  color:#fff;
+  border-radius:30px;
+  background:linear-gradient(135deg,#003da5,#0b67ff);
+}
+
+.download::after{
+  content:"";
+  position:absolute;
+  width:360px;
+  height:360px;
+  right:-120px;
+  top:-120px;
+  border:70px solid rgba(255,255,255,.07);
+  border-radius:50%;
+}
+
+.download h2{
+  margin:0 0 8px;
+  font-size:34px;
+}
+
+.download p{
+  margin:0;
+  max-width:650px;
+  color:rgba(255,255,255,.82);
+  line-height:1.7;
+  font-size:14px;
+}
+
+.download .btn{
+  position:relative;
+  z-index:1;
+  min-width:210px;
+  color:var(--blue);
+  background:#fff;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  padding:36px 0 54px;
+  color:#748298;
+  text-align:center;
+  font-size:12px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:99;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(10,30,60,.45);
+  backdrop-filter:blur(7px);
+}
+
+.modal.show{
+  display:flex;
+  animation:fade .2s ease;
+}
+
+.modal-box{
+  width:min(440px,100%);
+  padding:28px;
+  background:#fff;
+  border-radius:24px;
+  box-shadow:0 30px 100px rgba(0,0,0,.25);
+  animation:pop .25s ease forwards;
+}
+
+.modal-box h3{
+  margin:0 0 7px;
+}
+
+.modal-box p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.modal-actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
+@keyframes fade{
+  from{
+    opacity:0;
+  }
+  to{
+    opacity:1;
+  }
+}
+
+@keyframes pop{
+  from{
+    opacity:0;
+    transform:translateY(15px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+  .hero-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .hero{
+    text-align:center;
+  }
+
+  .hero p{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .actions,
+  .trust{
+    justify-content:center;
+  }
+
+  .features{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .navlinks{
+    display:none;
+  }
+}
+
+@media(max-width:720px){
+
+  .install-phones{
+    grid-template-columns:1fr;
+    gap:45px;
+  }
+
+  .install-phone{
+    width:min(300px,80vw);
+  }
+
+  .download{
+    flex-direction:column;
+    align-items:flex-start;
+    padding:32px 25px;
+  }
+
+  .download h2{
+    font-size:28px;
+  }
+}
+
+@media(max-width:600px){
+
+  nav{
+    min-height:72px;
+    gap:10px;
+  }
+
+  .brand-area{
+    gap:8px;
+  }
+
+  .brand-logo,
+  .brand-logo img{
+    width:36px;
+    height:36px;
+  }
+
+  .brand-divider{
+    height:24px;
+  }
+
+  .brand-name{
+    font-size:14px;
+  }
+
+  .header-button{
+    padding:11px 13px;
+    font-size:12px;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+  h1{
+    letter-spacing:-1.8px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .actions .btn{
+    width:100%;
+  }
+}
+
+@media(max-width:430px){
+
+  .brand-name{
+    display:none;
+  }
+
+  .brand-divider:last-of-type{
+    display:none;
+  }
+
+  .brand-area{
+    gap:7px;
+  }
+
+  .brand-logo,
+  .brand-logo img{
+    width:34px;
+    height:34px;
+  }
+
+  .header-button{
+    padding:10px 12px;
+    font-size:11px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<nav>
+
+  <div class="brand-area">
+
+    <div class="brand-logo">
+      <img src="caths-logo.png" alt="CATHS-MAIN Logo">
+    </div>
+
+    <div class="brand-divider"></div>
+
+    <div class="brand-logo">
+      <img src="sslg-logo.png" alt="SSLG Logo">
+    </div>
+
+    <div class="brand-divider"></div>
+
+    <div class="brand-name">
+      CATHS-MAIN SSLG
+    </div>
+
+  </div>
+
+  <div class="navlinks">
+
+    <a href="#features">
+      Features
+    </a>
+
+    <a href="#install">
+      How to Install
+    </a>
+
+    <a href="#download">
+      Download
+    </a>
+
+  </div>
+
+  <a
+    class="btn btn-primary header-button"
+    href="#download"
+  >
+    Get the App
+  </a>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+<div class="hero-grid">
+
+  <div>
+
+    <span class="eyebrow">
+      📱 OFFICIAL CATHS-MAIN APP
+    </span>
+
+    <h1>
+      Your school.<br>
+      <span class="grad">
+        Your voice.
+      </span><br>
+      Your community.
+    </h1>
+
+    <p>
+      CATHS-MAIN brings student voice,
+      school updates, friendships,
+      messaging, guidance requests,
+      news, and feedback together
+      in one place.
+    </p>
+
+    <div class="actions">
+
+      <!-- DIRECT APK DOWNLOAD -->
+
+      <a
+        class="btn btn-primary"
+        href="app-release.apk"
+        download="CATHS-MAIN-SSLG.apk"
+      >
+        ⬇️ Download for Android
+      </a>
+
+      <a
+        class="btn btn-ghost"
+        href="#features"
+      >
+        Explore Features
+      </a>
+
+    </div>
+
+    <div class="trust">
+
+      <span>✓ Student Voice</span>
+      <span>✓ Real-time Community</span>
+      <span>✓ School Updates</span>
+
+    </div>
+
+  </div>
+
+
+  <div class="phone-wrap">
+
+    <div class="glow"></div>
+
+    <div class="phone">
+
+      <div class="screen">
+
+        <div class="topbar">
+
+          <div class="mini-brand">
+
+            <img
+              src="caths-logo.png"
+              alt="CATHS-MAIN"
+            >
+
+            <span>
+              CATHS-MAIN SSLG
+            </span>
+
+          </div>
+
+          <div class="screen-title">
+            Student Voice
+          </div>
+
+          <div class="screen-sub">
+            Your Voice Matters.
+          </div>
+
+        </div>
+
+        <div class="cards">
+
+          <div class="card">
+            <strong>📰 Latest News</strong>
+            <div class="line"></div>
+            <div class="line short"></div>
+          </div>
+
+          <div class="card">
+            <strong>💬 Messages</strong>
+            <div class="line"></div>
+            <div class="line short"></div>
+          </div>
+
+          <div class="card">
+            <strong>🗣️ Student Voice</strong>
+            <div class="line"></div>
+            <div class="line short"></div>
+          </div>
+
+          <div class="card">
+            <strong>👥 Friends</strong>
+            <div class="line"></div>
+            <div class="line short"></div>
+          </div>
+
+        </div>
+
+        <div class="navmock">
+
+          <span>
+            🏠
+            <small>Home</small>
+          </span>
+
+          <span>
+            📰
+            <small>News</small>
+          </span>
+
+          <span>
+            💬
+            <small>Messages</small>
+          </span>
+
+          <span>
+            👤
+            <small>Profile</small>
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section id="features">
+
+<div class="section-head">
+
+  <h2>
+    Everything students need
+  </h2>
+
+  <p>
+    Built around the real features
+    of your CATHS-SSLG project.
+  </p>
+
+</div>
+
+<div class="features">
+
+  <div class="feature">
+    <div class="icon">📰</div>
+    <h3>News & News Feed</h3>
+    <p>
+      See official school updates,
+      posts, comments, reactions,
+      sharing, and publishing tools.
+    </p>
+  </div>
+
+  <div class="feature">
+    <div class="icon">💬</div>
+    <h3>Messages & Groups</h3>
+    <p>
+      Chat with friends, create group chats,
+      manage members, and share messages.
+    </p>
+  </div>
+
+  <div class="feature">
+    <div class="icon">👥</div>
+    <h3>Friends</h3>
+    <p>
+      Find classmates, send requests,
+      view friends, and manage connections.
+    </p>
+  </div>
+
+  <div class="feature">
+    <div class="icon">🧑‍🏫</div>
+    <h3>Guidance</h3>
+    <p>
+      Send guidance requests and connect
+      student support with school workflows.
+    </p>
+  </div>
+
+  <div class="feature">
+    <div class="icon">🗣️</div>
+    <h3>Student Voice</h3>
+    <p>
+      Submit concerns and suggestions
+      and make your voice heard.
+    </p>
+  </div>
+
+  <div class="feature">
+    <div class="icon">👤</div>
+    <h3>Profiles</h3>
+    <p>
+      Student profiles, posts, comments,
+      reactions, and profile editing.
+    </p>
+  </div>
+
+  <div class="feature">
+    <div class="icon">🔔</div>
+    <h3>Community Activity</h3>
+    <p>
+      Stay updated with activity across
+      news, friends, messages, and posts.
+    </p>
+  </div>
+
+  <div class="feature">
+    <div class="icon">📲</div>
+    <h3>Installable App</h3>
+    <p>
+      Enjoy a mobile-friendly experience
+      designed for the CATHS community.
+    </p>
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     INSTALL
+========================= -->
+
+<section id="install" class="install-section">
+
+<div class="section-head">
+
+  <h2>
+    How to install CATHS-MAIN
+  </h2>
+
+  <p>
+    Follow these three simple steps
+    to install the app on Android.
+  </p>
+
+</div>
+
+<div class="install-phones">
+
+
+  <!-- STEP 1 -->
+
+  <div class="install-item">
+
+    <div class="install-phone">
+
+      <img
+        src="image1.png"
+        alt="Step 1"
+      >
+
+    </div>
+
+    <div class="step-content">
+
+      <div class="step-number">
+        1
+      </div>
+
+      <h3>
+        Download the App
+      </h3>
+
+      <p>
+        Tap the download button and save
+        the CATHS-MAIN APK to your
+        Android device.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- STEP 2 -->
+
+  <div class="install-item">
+
+    <div class="install-phone">
+
+      <img
+        src="image2.png"
+        alt="Step 2"
+      >
+
+    </div>
+
+    <div class="step-content">
+
+      <div class="step-number">
+        2
+      </div>
+
+      <h3>
+        Open the APK
+      </h3>
+
+      <p>
+        Open the downloaded APK and allow
+        your device to install the
+        application.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- STEP 3 -->
+
+  <div class="install-item">
+
+    <div class="install-phone">
+
+      <img
+        src="image3.png"
+        alt="Step 3"
+      >
+
+    </div>
+
+    <div class="step-content">
+
+      <div class="step-number">
+        3
+      </div>
+
+      <h3>
+        Install & Open
+      </h3>
+
+      <p>
+        Finish the installation, open
+        CATHS-MAIN, and sign in
+        to your account.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DOWNLOAD CTA
+========================= -->
+
+<section id="download">
+
+<div class="download">
+
+  <div>
+
+    <h2>
+      Ready to join CATHS-MAIN?
+    </h2>
+
+    <p>
+      Download the official Android app
+      and bring the CATHS-SSLG student
+      experience with you.
+    </p>
+
+  </div>
+
+  <!-- DIRECT APK DOWNLOAD -->
+
+  <a
+    class="btn"
+    href="app-release.apk"
+    download="CATHS-MAIN-SSLG.apk"
+  >
+    ⬇️ Download App
+  </a>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  © 2026 CATHS-MAIN SSLG • Student Voice
+
+</footer>
+
+</div>
+
+</body>
+</html>
