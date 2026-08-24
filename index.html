@@ -989,6 +989,79 @@ span:nth-child(3){
 }
 
 
+
+/* =========================================================
+   SPLASH — DOTS PREPARATION ANIMATION
+========================================================= */
+
+.hold-dots.preparing{
+
+  animation:
+    preparingPulse
+    1.6s
+    ease-in-out
+    infinite;
+
+}
+
+.hold-dots.preparing span{
+
+  animation:
+    preparingDots
+    1.8s
+    ease-in-out
+    infinite;
+
+  transform-origin:center;
+
+}
+
+.hold-dots.preparing span:nth-child(1){
+  animation-delay:0s;
+}
+
+.hold-dots.preparing span:nth-child(2){
+  animation-delay:.18s;
+}
+
+.hold-dots.preparing span:nth-child(3){
+  animation-delay:.36s;
+}
+
+@keyframes preparingPulse{
+
+  0%,100%{
+    transform:scale(.86);
+    opacity:.68;
+  }
+
+  50%{
+    transform:scale(1.1);
+    opacity:1;
+  }
+
+}
+
+@keyframes preparingDots{
+
+  0%{
+    transform:rotate(0deg) translateX(0) scale(.78);
+  }
+
+  35%{
+    transform:rotate(120deg) translateX(8px) scale(1.12);
+  }
+
+  70%{
+    transform:rotate(240deg) translateX(-7px) scale(1);
+  }
+
+  100%{
+    transform:rotate(360deg) translateX(0) scale(.78);
+  }
+
+}
+
 /* HOLD LABEL */
 
 .hold-label{
@@ -2055,9 +2128,9 @@ section{
   display:grid;
 
   grid-template-columns:
-    repeat(3,1fr);
+    repeat(5,1fr);
 
-  gap:28px;
+  gap:18px;
 
   align-items:start;
 
@@ -2131,6 +2204,236 @@ section{
 
 }
 
+
+/* =========================================================
+   STEP 5 — FINAL APP INSTALLED SCREEN
+========================================================= */
+
+.step5-screen{
+
+  width:100%;
+
+  min-height:575px;
+
+  aspect-ratio:9 / 18.5;
+
+  padding:34px 18px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  overflow:hidden;
+
+  border-radius:27px;
+
+  position:relative;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(106,185,255,.28),
+      transparent 38%
+    ),
+    linear-gradient(
+      155deg,
+      #eaf4ff 0%,
+      #ffffff 52%,
+      #eaf3ff 100%
+    );
+
+}
+
+.step5-screen::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:180px;
+
+  height:180px;
+
+  left:50%;
+
+  top:20%;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,61,165,.12),
+      transparent 70%
+    );
+
+  filter:blur(6px);
+
+  pointer-events:none;
+
+}
+
+.step5-screen::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:10px;
+
+  border-radius:21px;
+
+  border:1px solid rgba(255,255,255,.78);
+
+  pointer-events:none;
+
+}
+
+.step5-logos{
+
+  position:relative;
+
+  z-index:2;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:14px;
+
+  margin-bottom:22px;
+
+}
+
+.step5-logos img{
+
+  width:72px;
+
+  height:72px;
+
+  object-fit:contain;
+
+  filter:
+    drop-shadow(
+      0 7px 13px
+      rgba(0,61,165,.16)
+    );
+
+}
+
+.step5-divider{
+
+  width:1px;
+
+  height:46px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(0,61,165,.28),
+      transparent
+    );
+
+}
+
+.step5-thankyou{
+
+  position:relative;
+
+  z-index:2;
+
+  margin:0;
+
+  max-width:220px;
+
+  color:#003da5;
+
+  font-size:17px;
+
+  line-height:1.32;
+
+  font-weight:800;
+
+  letter-spacing:-.3px;
+
+}
+
+.step5-small{
+
+  position:relative;
+
+  z-index:2;
+
+  margin:10px 0 0;
+
+  max-width:220px;
+
+  color:#64748b;
+
+  font-size:10px;
+
+  line-height:1.6;
+
+  font-weight:500;
+
+}
+
+.step5-quote{
+
+  position:relative;
+
+  z-index:2;
+
+  max-width:225px;
+
+  margin:17px 0 0;
+
+  padding:14px 13px;
+
+  color:#53677f;
+
+  font-size:10px;
+
+  line-height:1.72;
+
+  font-weight:600;
+
+  background:rgba(255,255,255,.78);
+
+  border:1px solid rgba(0,61,165,.09);
+
+  border-radius:16px;
+
+  box-shadow:
+    0 12px 28px
+    rgba(15,49,100,.08);
+
+}
+
+.step5-quote strong{
+
+  display:block;
+
+  margin-top:8px;
+
+  color:#003da5;
+
+  font-size:10px;
+
+  line-height:1.45;
+
+}
 
 .step-content{
 
@@ -2403,6 +2706,54 @@ footer{
         250px,
         100%
       );
+
+  }
+
+}
+
+
+/* =========================================================
+   INSTALLATION RESPONSIVE OVERRIDES
+========================================================= */
+
+@media(max-width:1100px){
+
+  .install-phones{
+
+    grid-template-columns:
+      repeat(3,1fr);
+
+    gap:24px;
+
+  }
+
+  .install-phone{
+
+    width:min(
+      250px,
+      100%
+    );
+
+  }
+
+}
+
+@media(max-width:720px){
+
+  .install-phones{
+
+    grid-template-columns:1fr;
+
+    gap:45px;
+
+  }
+
+  .install-phone{
+
+    width:min(
+      300px,
+      80vw
+    );
 
   }
 
@@ -3556,10 +3907,42 @@ footer{
 
     <div class="install-phone">
 
-      <img
-        src="image5.png"
-        alt="Step 5: Enjoy the app and show your voice"
-      >
+      <div class="step5-screen">
+
+        <div class="step5-logos">
+
+          <img
+            src="caths-logo.png"
+            alt="CATHS-MAIN Logo"
+          >
+
+          <div class="step5-divider"></div>
+
+          <img
+            src="sslg-logo.png"
+            alt="SSLG Logo"
+          >
+
+        </div>
+
+        <h4 class="step5-thankyou">
+          Thank You for<br>
+          Installing the App!
+        </h4>
+
+        <p class="step5-small">
+          Welcome to the CATHS-MAIN community.
+        </p>
+
+        <p class="step5-quote">
+          “Your voice matters.<br>
+          Your ideas inspire.<br>
+          Your community listens.”
+
+          <strong>Your Voice. Your Community. Your Impact.</strong>
+        </p>
+
+      </div>
 
     </div>
 
@@ -3713,6 +4096,33 @@ document.addEventListener(
     let startTime = 0;
 
     let animationFrame = null;
+
+    /* ==========================================
+       PRE-HOLD DOT PREPARATION
+    ========================================== */
+
+    const holdDots =
+      document.querySelector(".hold-dots");
+
+    const PRE_HOLD_TIME = 1900;
+
+    if(holdDots){
+
+      holdDots.classList.add("preparing");
+
+      holdRing.style.pointerEvents = "none";
+      holdRing.style.opacity = ".82";
+
+      setTimeout(function(){
+
+        holdDots.classList.remove("preparing");
+
+        holdRing.style.pointerEvents = "auto";
+        holdRing.style.opacity = "1";
+
+      }, PRE_HOLD_TIME);
+
+    }
 
 
     /* ==========================================
