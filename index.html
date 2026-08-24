@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#003da5">
+
 <title>CATHS-MAIN SSLG</title>
 
-<link rel="icon" href="icon-192.png">
+<link rel="icon" type="image/png" href="sslg-logo.png">
+<link rel="shortcut icon" type="image/png" href="sslg-logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
 
 <style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root{
   --blue:#003da5;
   --blue2:#0b66ff;
@@ -21,6 +33,11 @@
   --line:#dfe8f7;
   --white:#ffffff;
 }
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
 
 *{
   box-sizing:border-box;
@@ -32,12 +49,56 @@ html{
 
 body{
   margin:0;
-  font-family:Poppins,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:
+    Poppins,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
   color:var(--ink);
+
   background:
-    radial-gradient(circle at top right,rgba(158,202,255,.28),transparent 30%),
-    linear-gradient(180deg,#eef6ff 0%,#fff 45%,#f7fbff 100%);
+    radial-gradient(
+      circle at top right,
+      rgba(158,202,255,.28),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #eef6ff 0%,
+      #ffffff 45%,
+      #f7fbff 100%
+    );
+
   overflow-x:hidden;
+}
+
+body.loader-active{
+  overflow:hidden;
+}
+
+body::before{
+  content:"";
+
+  position:fixed;
+
+  width:520px;
+  height:520px;
+
+  top:-220px;
+  right:-160px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(130,185,255,.18),
+      transparent 70%
+    );
+
+  pointer-events:none;
+  z-index:-1;
 }
 
 .container{
@@ -45,30 +106,851 @@ body{
   margin:auto;
 }
 
-/* =========================
+
+/* =========================================================
+   PROJECT SSLG OPENING
+========================================================= */
+
+#pageLoader{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(45,125,255,.20),
+      transparent 34%
+    ),
+    linear-gradient(
+      145deg,
+      #00132e,
+      #003da5 52%,
+      #041a40
+    );
+
+  opacity:1;
+  visibility:visible;
+
+  transition:
+    opacity .9s cubic-bezier(.2,.8,.2,1),
+    visibility .9s ease,
+    transform .9s cubic-bezier(.2,.8,.2,1);
+}
+
+#pageLoader.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+
+  transform:scale(1.08);
+}
+
+
+/* BACKGROUND ORBITS */
+
+#pageLoader::before{
+  content:"";
+
+  position:absolute;
+
+  width:660px;
+  height:660px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  animation:
+    loaderOrbit1
+    8s
+    linear
+    infinite;
+}
+
+#pageLoader::after{
+  content:"";
+
+  position:absolute;
+
+  width:900px;
+  height:900px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(255,255,255,.045);
+
+  animation:
+    loaderOrbit2
+    12s
+    linear
+    infinite;
+}
+
+
+/* CENTER BACKGROUND GLOW */
+
+.loader-bg-glow{
+  position:absolute;
+
+  width:250px;
+  height:250px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(105,184,255,.20),
+      transparent 70%
+    );
+
+  filter:blur(25px);
+
+  animation:
+    backgroundPulse
+    3s
+    ease-in-out
+    infinite;
+}
+
+
+/* LOADER CONTENT */
+
+.loader-content{
+  position:relative;
+  z-index:5;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  text-align:center;
+}
+
+
+/* =========================================================
+   LOADER LOGO
+========================================================= */
+
+.loader-logo-wrap{
+  position:relative;
+
+  width:155px;
+  height:155px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:26px;
+}
+
+.loader-ring{
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+}
+
+.loader-ring.ring-1{
+  inset:0;
+
+  border:1px solid rgba(255,255,255,.28);
+
+  animation:
+    ringPulse
+    2.4s
+    ease-in-out
+    infinite;
+}
+
+.loader-ring.ring-2{
+  inset:13px;
+
+  border:1px dashed rgba(172,221,255,.23);
+
+  animation:
+    ringRotate
+    7s
+    linear
+    infinite;
+}
+
+.loader-ring.ring-3{
+  inset:27px;
+
+  border:1px solid rgba(255,255,255,.10);
+
+  animation:
+    ringRotateReverse
+    5s
+    linear
+    infinite;
+}
+
+.loader-logo{
+  position:relative;
+
+  width:105px;
+  height:105px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  animation:
+    logoFloat
+    2.7s
+    ease-in-out
+    infinite;
+}
+
+.loader-logo::before{
+  content:"";
+
+  position:absolute;
+
+  inset:-16px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.25),
+      rgba(78,161,255,.12) 48%,
+      transparent 72%
+    );
+
+  filter:blur(8px);
+
+  animation:
+    logoGlow
+    2s
+    ease-in-out
+    infinite;
+}
+
+.loader-logo img{
+  position:relative;
+  z-index:2;
+
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+
+  filter:
+    drop-shadow(
+      0 0 19px
+      rgba(157,216,255,.85)
+    );
+}
+
+
+/* =========================================================
+   LOADER TITLE
+========================================================= */
+
+.loader-title{
+  color:#fff;
+
+  font-size:
+    clamp(
+      29px,
+      5vw,
+      43px
+    );
+
+  font-weight:800;
+
+  letter-spacing:5px;
+
+  margin-bottom:7px;
+
+  opacity:0;
+
+  transform:
+    translateY(15px)
+    scale(.96);
+
+  animation:
+    loaderTitleIn
+    .9s
+    .25s
+    cubic-bezier(.2,.8,.2,1)
+    forwards;
+
+  text-shadow:
+    0 4px 24px
+    rgba(0,0,0,.28);
+}
+
+.loader-title span{
+  color:#a6d3ff;
+}
+
+
+/* SUBTITLE */
+
+.loader-subtitle{
+  color:rgba(255,255,255,.72);
+
+  font-size:12px;
+
+  letter-spacing:1.5px;
+
+  margin-bottom:28px;
+
+  opacity:0;
+
+  transform:translateY(9px);
+
+  animation:
+    loaderSubtitleIn
+    .9s
+    .5s
+    cubic-bezier(.2,.8,.2,1)
+    forwards;
+}
+
+
+/* =========================================================
+   LOADING BAR
+========================================================= */
+
+.loader-line{
+  position:relative;
+
+  width:220px;
+  height:4px;
+
+  overflow:hidden;
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.12);
+
+  box-shadow:
+    0 0 20px
+    rgba(136,204,255,.08);
+}
+
+.loader-progress{
+  width:0%;
+  height:100%;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7db7ff,
+      #ffffff,
+      #7db7ff
+    );
+
+  box-shadow:
+    0 0 16px
+    rgba(155,211,255,.9);
+
+  animation:
+    loadingProgress
+    1.9s
+    cubic-bezier(.4,.1,.2,1)
+    forwards;
+}
+
+
+/* =========================================================
+   PRESS & HOLD AREA
+========================================================= */
+
+.hold-area{
+  margin-top:24px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  opacity:0;
+
+  transform:translateY(12px);
+
+  animation:
+    holdAppear
+    .8s
+    1.95s
+    cubic-bezier(.2,.8,.2,1)
+    forwards;
+}
+
+.hold-ring{
+  position:relative;
+
+  width:118px;
+  height:118px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  cursor:pointer;
+
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+
+  touch-action:none;
+
+  transition:
+    transform .35s ease,
+    filter .35s ease;
+}
+
+.hold-ring:hover{
+  transform:scale(1.035);
+}
+
+
+/* CIRCULAR PROGRESS */
+
+.hold-progress{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  transform:rotate(-90deg);
+
+  overflow:visible;
+}
+
+.hold-track,
+.hold-fill{
+  fill:none;
+  stroke-width:2.5;
+}
+
+.hold-track{
+  stroke:
+    rgba(255,255,255,.10);
+}
+
+.hold-fill{
+  stroke:#9ed4ff;
+
+  stroke-linecap:round;
+
+  stroke-dasharray:270.176;
+  stroke-dashoffset:270.176;
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(134,205,255,.9)
+    );
+
+  transition:
+    stroke-dashoffset .05s linear;
+}
+
+
+/* THREE DOTS */
+
+.hold-dots{
+  position:relative;
+
+  width:74px;
+  height:74px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:9px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.09),
+      rgba(99,173,255,.04) 55%,
+      transparent 72%
+    );
+
+  box-shadow:
+    inset 0 0 25px
+    rgba(130,200,255,.06),
+
+    0 0 22px
+    rgba(75,160,255,.08);
+
+  transition:
+    width .8s cubic-bezier(.2,.8,.2,1),
+    height .8s cubic-bezier(.2,.8,.2,1),
+    gap .8s ease,
+    box-shadow .8s ease,
+    background .8s ease,
+    transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.hold-dots span{
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:#fff;
+
+  box-shadow:
+    0 0 12px
+    rgba(163,219,255,.95);
+
+  transition:
+    transform .8s cubic-bezier(.2,.8,.2,1),
+    width .8s ease,
+    height .8s ease;
+}
+
+
+/* HOLDING */
+
+.hold-ring.holding{
+  transform:scale(1.06);
+}
+
+.hold-ring.holding .hold-dots{
+  width:86px;
+  height:86px;
+
+  gap:22px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(126,193,255,.16),
+      rgba(80,150,255,.05) 60%,
+      transparent 75%
+    );
+
+  box-shadow:
+    inset 0 0 30px
+    rgba(135,208,255,.10),
+
+    0 0 35px
+    rgba(75,165,255,.20);
+}
+
+.hold-ring.holding .hold-dots span{
+  width:9px;
+  height:9px;
+}
+
+.hold-ring.holding
+.hold-dots span:nth-child(1){
+  transform:
+    translateX(-4px)
+    scale(1.08);
+}
+
+.hold-ring.holding
+.hold-dots span:nth-child(2){
+  transform:
+    translateY(-4px)
+    scale(1.2);
+}
+
+.hold-ring.holding
+.hold-dots span:nth-child(3){
+  transform:
+    translateX(4px)
+    scale(1.08);
+}
+
+
+/* ALMOST DONE */
+
+.hold-ring.ready{
+  transform:scale(1.13);
+}
+
+.hold-ring.ready .hold-dots{
+  width:94px;
+  height:94px;
+
+  gap:28px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(135,207,255,.22),
+      rgba(90,167,255,.06) 60%,
+      transparent 75%
+    );
+
+  box-shadow:
+    0 0 45px
+    rgba(125,203,255,.28);
+}
+
+.hold-ring.ready .hold-dots span{
+  width:10px;
+  height:10px;
+}
+
+.hold-ring.ready
+.hold-dots span:nth-child(1){
+  transform:
+    translateX(-8px)
+    scale(1.2);
+}
+
+.hold-ring.ready
+.hold-dots span:nth-child(2){
+  transform:
+    translateY(-7px)
+    scale(1.3);
+}
+
+.hold-ring.ready
+.hold-dots span:nth-child(3){
+  transform:
+    translateX(8px)
+    scale(1.2);
+}
+
+
+/* LABEL */
+
+.hold-label{
+  margin-top:12px;
+
+  color:
+    rgba(255,255,255,.64);
+
+  font-size:10px;
+
+  font-weight:700;
+
+  letter-spacing:2.2px;
+
+  transition:
+    color .3s ease,
+    transform .3s ease;
+}
+
+.hold-ring.holding + .hold-label{
+  color:#b8ddff;
+
+  transform:translateY(-2px);
+}
+
+.hold-ring.ready + .hold-label{
+  color:#fff;
+
+  transform:
+    translateY(-3px)
+    scale(1.04);
+}
+
+
+/* =========================================================
+   LOADER ANIMATIONS
+========================================================= */
+
+@keyframes loaderOrbit1{
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+@keyframes loaderOrbit2{
+  from{
+    transform:rotate(360deg);
+  }
+
+  to{
+    transform:rotate(0deg);
+  }
+}
+
+@keyframes backgroundPulse{
+  0%,
+  100%{
+    transform:scale(.82);
+    opacity:.55;
+  }
+
+  50%{
+    transform:scale(1.12);
+    opacity:1;
+  }
+}
+
+@keyframes logoFloat{
+  0%,
+  100%{
+    transform:
+      translateY(6px)
+      scale(.94);
+  }
+
+  50%{
+    transform:
+      translateY(-5px)
+      scale(1.04);
+  }
+}
+
+@keyframes logoGlow{
+  0%,
+  100%{
+    opacity:.55;
+    transform:scale(.9);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1.12);
+  }
+}
+
+@keyframes ringPulse{
+  0%,
+  100%{
+    transform:scale(.9);
+    opacity:.35;
+  }
+
+  50%{
+    transform:scale(1.06);
+    opacity:.85;
+  }
+}
+
+@keyframes ringRotate{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+@keyframes ringRotateReverse{
+  to{
+    transform:rotate(-360deg);
+  }
+}
+
+@keyframes loaderTitleIn{
+  from{
+    opacity:0;
+
+    transform:
+      translateY(16px)
+      scale(.95);
+  }
+
+  to{
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes loaderSubtitleIn{
+  from{
+    opacity:0;
+
+    transform:
+      translateY(9px);
+  }
+
+  to{
+    opacity:1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+@keyframes loadingProgress{
+  from{
+    width:0%;
+  }
+
+  to{
+    width:100%;
+  }
+}
+
+@keyframes holdAppear{
+  from{
+    opacity:0;
+
+    transform:
+      translateY(12px);
+  }
+
+  to{
+    opacity:1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 nav{
   width:100%;
   min-height:82px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   gap:25px;
 }
 
 .brand-area{
   display:flex;
   align-items:center;
+
   gap:12px;
+
   min-width:0;
 }
 
 .brand-logo{
   width:44px;
   height:44px;
+
   flex:0 0 44px;
+
   display:flex;
   align-items:center;
   justify-content:center;
@@ -77,37 +959,50 @@ nav{
 .brand-logo img{
   width:44px;
   height:44px;
+
   display:block;
+
   object-fit:contain;
 }
 
 .brand-divider{
   width:1px;
   height:30px;
+
   background:#d7e1ef;
+
   flex:0 0 1px;
 }
 
 .brand-name{
   color:var(--blue);
+
   font-size:19px;
   font-weight:800;
+
   letter-spacing:-.4px;
+
   white-space:nowrap;
 }
 
 .navlinks{
   display:flex;
+
   align-items:center;
+
   gap:28px;
+
   margin-left:auto;
 }
 
 .navlinks a{
   text-decoration:none;
+
   color:#53657d;
+
   font-size:14px;
   font-weight:600;
+
   transition:.2s;
 }
 
@@ -117,82 +1012,150 @@ nav{
 
 .header-button{
   flex:0 0 auto;
+
   white-space:nowrap;
 }
 
-/* =========================
+
+/* =========================================================
    BUTTONS
-========================= */
+========================================================= */
 
 .btn{
   display:inline-flex;
+
   align-items:center;
   justify-content:center;
+
   gap:9px;
+
   border:none;
+
   border-radius:15px;
+
   padding:14px 20px;
-  font:700 14px Poppins,sans-serif;
+
+  font:
+    700 14px
+    Poppins,
+    sans-serif;
+
   text-decoration:none;
+
   cursor:pointer;
-  transition:.25s ease;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
 }
 
 .btn-primary{
   color:#fff;
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  box-shadow:0 14px 28px rgba(0,61,165,.24);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blue2)
+    );
+
+  box-shadow:
+    0 14px 28px
+    rgba(0,61,165,.24);
 }
 
 .btn-primary:hover{
   transform:translateY(-3px);
-  box-shadow:0 18px 32px rgba(0,61,165,.3);
+
+  box-shadow:
+    0 18px 32px
+    rgba(0,61,165,.30);
 }
 
 .btn-ghost{
   background:#fff;
+
   color:var(--blue);
-  border:1px solid var(--line);
+
+  border:
+    1px solid
+    var(--line);
 }
 
 .btn-ghost:hover{
   transform:translateY(-2px);
-  box-shadow:0 10px 25px rgba(20,70,140,.08);
+
+  box-shadow:
+    0 10px 25px
+    rgba(20,70,140,.08);
 }
 
-/* =========================
+
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .hero{
-  padding:56px 0 55px;
+  padding:
+    56px
+    0
+    55px;
 }
 
 .hero-grid{
   display:grid;
-  grid-template-columns:1.05fr .95fr;
+
+  grid-template-columns:
+    1.05fr
+    .95fr;
+
   align-items:center;
+
   gap:60px;
 }
 
 .eyebrow{
   display:inline-flex;
+
   align-items:center;
+
   gap:8px;
+
   background:#e9f2ff;
+
   color:var(--blue);
-  border:1px solid #cfe1ff;
-  padding:8px 13px;
+
+  border:
+    1px solid
+    #cfe1ff;
+
+  padding:
+    8px
+    13px;
+
   border-radius:999px;
+
   font-size:12px;
+
   font-weight:700;
 }
 
 h1{
-  font-size:clamp(42px,6vw,72px);
+  font-size:
+    clamp(
+      42px,
+      6vw,
+      72px
+    );
+
   line-height:1.02;
+
   letter-spacing:-2.8px;
-  margin:18px 0 16px;
+
+  margin:
+    18px
+    0
+    16px;
 }
 
 .grad{
@@ -201,94 +1164,173 @@ h1{
 
 .hero p{
   max-width:620px;
+
   color:var(--muted);
+
   font-size:18px;
+
   line-height:1.8;
 }
 
 .actions{
   display:flex;
+
   flex-wrap:wrap;
+
   gap:12px;
-  margin:28px 0 18px;
+
+  margin:
+    28px
+    0
+    18px;
 }
 
 .trust{
   display:flex;
+
   flex-wrap:wrap;
+
   gap:18px;
+
   color:#708098;
+
   font-size:12px;
+
   font-weight:600;
 }
 
-/* =========================
-   HERO PHONE
-========================= */
+
+/* =========================================================
+   FLOATING PHONE
+========================================================= */
 
 .phone-wrap{
   position:relative;
+
   display:flex;
+
   justify-content:center;
 }
 
 .glow{
   position:absolute;
+
   inset:12% 8%;
-  background:radial-gradient(circle,#a5caff 0%,transparent 66%);
+
+  background:
+    radial-gradient(
+      circle,
+      #a5caff 0%,
+      transparent 66%
+    );
+
   filter:blur(10px);
+
   opacity:.7;
 }
 
 .phone{
   position:relative;
-  width:min(320px,78vw);
+
+  width:min(
+    320px,
+    78vw
+  );
+
   background:#07162b;
-  border:8px solid #07162b;
+
+  border:
+    8px solid
+    #07162b;
+
   padding:8px;
+
   border-radius:40px;
-  box-shadow:0 34px 80px rgba(18,54,111,.28);
-  animation:float 5s ease-in-out infinite;
+
+  box-shadow:
+    0 34px 80px
+    rgba(18,54,111,.28);
+
+  animation:
+    floatPhone
+    5s
+    ease-in-out
+    infinite;
 }
 
 .screen{
   min-height:575px;
+
   background:#f8fbff;
+
   overflow:hidden;
+
   border-radius:29px;
 }
 
 .topbar{
   color:#fff;
-  padding:30px 18px 22px;
-  background:linear-gradient(135deg,#003da5,#0965ff);
+
+  padding:
+    30px
+    18px
+    22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #003da5,
+      #0965ff
+    );
 }
 
 .mini-brand{
   display:flex;
+
   align-items:center;
+
   gap:9px;
+
   font-size:14px;
+
   font-weight:800;
 }
 
-.mini-brand img{
+.mini-logos{
+  display:flex;
+
+  align-items:center;
+
+  gap:5px;
+}
+
+.mini-logos img{
   width:31px;
   height:31px;
+
+  display:block;
+
   object-fit:contain;
 }
 
 .screen-title{
   margin-top:27px;
+
   font-size:22px;
+
   font-weight:800;
 }
 
 .screen-sub{
   margin-top:4px;
+
   font-size:11px;
+
   opacity:.86;
 }
+
+
+/* PHONE CONTENT */
 
 .cards{
   padding:16px;
@@ -296,23 +1338,37 @@ h1{
 
 .card{
   padding:14px;
+
   margin-bottom:12px;
+
   background:#fff;
-  border:1px solid #e5edf8;
+
+  border:
+    1px solid
+    #e5edf8;
+
   border-radius:18px;
-  box-shadow:0 8px 20px rgba(25,56,102,.06);
+
+  box-shadow:
+    0 8px 20px
+    rgba(25,56,102,.06);
 }
 
 .card strong{
   display:block;
+
   margin-bottom:7px;
+
   font-size:12px;
 }
 
 .line{
   height:8px;
+
   background:#edf3fb;
+
   border-radius:999px;
+
   margin:5px 0;
 }
 
@@ -320,38 +1376,56 @@ h1{
   width:65%;
 }
 
+
+/* PHONE NAV */
+
 .navmock{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+    repeat(4,1fr);
+
   padding:12px;
-  border-top:1px solid #e6edf8;
+
+  border-top:
+    1px solid
+    #e6edf8;
+
   background:#fff;
 }
 
 .navmock span{
   text-align:center;
+
   font-size:17px;
 }
 
 .navmock small{
   display:block;
+
   margin-top:4px;
+
   color:#708097;
+
   font-size:8px;
 }
 
-@keyframes float{
-  0%,100%{
+
+@keyframes floatPhone{
+  0%,
+  100%{
     transform:translateY(0);
   }
+
   50%{
     transform:translateY(-10px);
   }
 }
 
-/* =========================
+
+/* =========================================================
    SECTIONS
-========================= */
+========================================================= */
 
 section{
   padding:84px 0;
@@ -359,70 +1433,109 @@ section{
 
 .section-head{
   max-width:720px;
-  margin:0 auto 42px;
+
+  margin:
+    0 auto
+    42px;
+
   text-align:center;
 }
 
 .section-head h2{
-  margin:0 0 10px;
+  margin:
+    0
+    0
+    10px;
+
   font-size:36px;
 }
 
 .section-head p{
   margin:0;
+
   color:var(--muted);
+
   line-height:1.8;
 }
 
-/* =========================
+
+/* =========================================================
    FEATURES
-========================= */
+========================================================= */
 
 .features{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+    repeat(4,1fr);
+
   gap:16px;
 }
 
 .feature{
   padding:22px;
+
   background:#fff;
-  border:1px solid var(--line);
+
+  border:
+    1px solid
+    var(--line);
+
   border-radius:22px;
-  box-shadow:0 10px 30px rgba(24,61,115,.05);
+
+  box-shadow:
+    0 10px 30px
+    rgba(24,61,115,.05);
+
   transition:.25s ease;
 }
 
 .feature:hover{
   transform:translateY(-5px);
-  box-shadow:0 17px 35px rgba(24,61,115,.09);
+
+  box-shadow:
+    0 17px 35px
+    rgba(24,61,115,.09);
 }
 
 .icon{
   width:50px;
   height:50px;
+
   display:grid;
+
   place-items:center;
+
   background:#eaf2ff;
+
   border-radius:15px;
+
   font-size:23px;
 }
 
 .feature h3{
-  margin:16px 0 7px;
+  margin:
+    16px
+    0
+    7px;
+
   font-size:16px;
 }
 
 .feature p{
   margin:0;
+
   color:var(--muted);
+
   font-size:13px;
+
   line-height:1.75;
 }
 
-/* =========================
-   INSTALL
-========================= */
+
+/* =========================================================
+   INSTALLATION
+========================================================= */
 
 .install-section{
   padding-top:95px;
@@ -430,8 +1543,12 @@ section{
 
 .install-phones{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap:28px;
+
   align-items:start;
 }
 
@@ -441,198 +1558,232 @@ section{
 
 .install-phone{
   position:relative;
-  width:min(290px,100%);
+
+  width:min(
+    290px,
+    100%
+  );
+
   margin:0 auto;
+
   padding:8px;
+
   border-radius:36px;
+
   background:#07162b;
-  border:7px solid #07162b;
-  box-shadow:0 26px 55px rgba(15,49,100,.20);
+
+  border:
+    7px solid
+    #07162b;
+
+  box-shadow:
+    0 26px 55px
+    rgba(15,49,100,.20);
+
   transition:.3s ease;
 }
 
 .install-phone:hover{
   transform:translateY(-8px);
-  box-shadow:0 35px 65px rgba(15,49,100,.25);
+
+  box-shadow:
+    0 35px 65px
+    rgba(15,49,100,.25);
 }
 
 .install-phone img{
   display:block;
+
   width:100%;
-  aspect-ratio:9/18.5;
+
+  aspect-ratio:
+    9 / 18.5;
+
   object-fit:cover;
+
   object-position:center;
+
   border-radius:27px;
+
   background:#edf4ff;
 }
 
 .step-content{
   margin-top:22px;
-  padding:0 12px;
+
+  padding:
+    0
+    12px;
 }
 
 .step-number{
   width:42px;
   height:42px;
-  margin:0 auto 13px;
+
+  margin:
+    0
+    auto
+    13px;
+
   display:grid;
+
   place-items:center;
+
   border-radius:14px;
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blue2)
+    );
+
   color:#fff;
+
   font-size:16px;
+
   font-weight:800;
-  box-shadow:0 10px 25px rgba(0,61,165,.22);
+
+  box-shadow:
+    0 10px 25px
+    rgba(0,61,165,.22);
 }
 
 .step-content h3{
-  margin:0 0 8px;
+  margin:
+    0
+    0
+    8px;
+
   font-size:19px;
 }
 
 .step-content p{
-  margin:0 auto;
+  margin:
+    0
+    auto;
+
   max-width:290px;
+
   color:var(--muted);
+
   font-size:13px;
+
   line-height:1.8;
 }
 
-/* =========================
+
+/* =========================================================
    DOWNLOAD
-========================= */
+========================================================= */
 
 .download{
   position:relative;
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   gap:30px;
+
   overflow:hidden;
+
   padding:48px;
+
   color:#fff;
+
   border-radius:30px;
-  background:linear-gradient(135deg,#003da5,#0b67ff);
+
+  background:
+    linear-gradient(
+      135deg,
+      #003da5,
+      #0b67ff
+    );
 }
 
 .download::after{
   content:"";
+
   position:absolute;
+
   width:360px;
   height:360px;
+
   right:-120px;
   top:-120px;
-  border:70px solid rgba(255,255,255,.07);
+
+  border:
+    70px solid
+    rgba(255,255,255,.07);
+
   border-radius:50%;
 }
 
 .download h2{
-  margin:0 0 8px;
+  margin:
+    0
+    0
+    8px;
+
   font-size:34px;
 }
 
 .download p{
   margin:0;
+
   max-width:650px;
-  color:rgba(255,255,255,.82);
+
+  color:
+    rgba(255,255,255,.82);
+
   line-height:1.7;
+
   font-size:14px;
 }
 
 .download .btn{
   position:relative;
+
   z-index:1;
+
   min-width:210px;
+
   color:var(--blue);
+
   background:#fff;
 }
 
-/* =========================
+
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 footer{
-  padding:36px 0 54px;
+  padding:
+    36px
+    0
+    54px;
+
   color:#748298;
+
   text-align:center;
+
   font-size:12px;
 }
 
-/* =========================
-   MODAL
-========================= */
 
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:99;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(10,30,60,.45);
-  backdrop-filter:blur(7px);
-}
-
-.modal.show{
-  display:flex;
-  animation:fade .2s ease;
-}
-
-.modal-box{
-  width:min(440px,100%);
-  padding:28px;
-  background:#fff;
-  border-radius:24px;
-  box-shadow:0 30px 100px rgba(0,0,0,.25);
-  animation:pop .25s ease forwards;
-}
-
-.modal-box h3{
-  margin:0 0 7px;
-}
-
-.modal-box p{
-  margin:0;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.7;
-}
-
-.modal-actions{
-  display:flex;
-  gap:10px;
-  margin-top:18px;
-}
-
-@keyframes fade{
-  from{
-    opacity:0;
-  }
-  to{
-    opacity:1;
-  }
-}
-
-@keyframes pop{
-  from{
-    opacity:0;
-    transform:translateY(15px) scale(.97);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-}
-
-/* =========================
+/* =========================================================
    RESPONSIVE
-========================= */
+========================================================= */
 
 @media(max-width:950px){
 
   .hero-grid{
     grid-template-columns:1fr;
+
     gap:40px;
   }
 
@@ -651,7 +1802,8 @@ footer{
   }
 
   .features{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:
+      repeat(2,1fr);
   }
 
   .navlinks{
@@ -663,17 +1815,26 @@ footer{
 
   .install-phones{
     grid-template-columns:1fr;
+
     gap:45px;
   }
 
   .install-phone{
-    width:min(300px,80vw);
+    width:
+      min(
+        300px,
+        80vw
+      );
   }
 
   .download{
     flex-direction:column;
+
     align-items:flex-start;
-    padding:32px 25px;
+
+    padding:
+      32px
+      25px;
   }
 
   .download h2{
@@ -683,8 +1844,50 @@ footer{
 
 @media(max-width:600px){
 
+  .loader-logo-wrap{
+    width:125px;
+    height:125px;
+  }
+
+  .loader-logo{
+    width:88px;
+    height:88px;
+  }
+
+  .loader-title{
+    font-size:27px;
+    letter-spacing:3px;
+  }
+
+  .loader-line{
+    width:180px;
+  }
+
+  .hold-ring{
+    width:108px;
+    height:108px;
+  }
+
+  .hold-dots{
+    width:68px;
+    height:68px;
+  }
+
+  .hold-ring.holding
+  .hold-dots{
+    width:80px;
+    height:80px;
+  }
+
+  .hold-ring.ready
+  .hold-dots{
+    width:88px;
+    height:88px;
+  }
+
   nav{
     min-height:72px;
+
     gap:10px;
   }
 
@@ -707,7 +1910,10 @@ footer{
   }
 
   .header-button{
-    padding:11px 13px;
+    padding:
+      11px
+      13px;
+
     font-size:12px;
   }
 
@@ -753,43 +1959,221 @@ footer{
   }
 
   .header-button{
-    padding:10px 12px;
+    padding:
+      10px
+      12px;
+
     font-size:11px;
   }
+
 }
 
 </style>
+
 </head>
 
-<body>
+
+<body class="loader-active">
+
+
+<!-- =====================================================
+     PROJECT SSLG SPLASH SCREEN
+===================================================== -->
+
+<div id="pageLoader">
+
+  <div class="loader-bg-glow"></div>
+
+  <div class="loader-content">
+
+
+    <!-- LOGO -->
+
+    <div class="loader-logo-wrap">
+
+      <div class="loader-ring ring-1"></div>
+
+      <div class="loader-ring ring-2"></div>
+
+      <div class="loader-ring ring-3"></div>
+
+
+      <div class="loader-logo">
+
+        <img
+          src="sslg-logo.png"
+          alt="SSLG Logo"
+        >
+
+      </div>
+
+    </div>
+
+
+    <!-- TITLE -->
+
+    <div class="loader-title">
+
+      PROJECT <span>SSLG</span>
+
+    </div>
+
+
+    <!-- SUBTITLE -->
+
+    <div class="loader-subtitle">
+
+      CATHS-MAIN Student Voice
+
+    </div>
+
+
+    <!-- LOADING BAR -->
+
+    <div class="loader-line">
+
+      <div class="loader-progress"></div>
+
+    </div>
+
+
+    <!-- PRESS AND HOLD -->
+
+    <div class="hold-area">
+
+
+      <div
+        class="hold-ring"
+        id="holdRing"
+      >
+
+
+        <!-- CIRCULAR PROGRESS -->
+
+        <svg
+          class="hold-progress"
+          viewBox="0 0 100 100"
+        >
+
+          <circle
+            class="hold-track"
+            cx="50"
+            cy="50"
+            r="43"
+          ></circle>
+
+
+          <circle
+            class="hold-fill"
+            id="holdFill"
+            cx="50"
+            cy="50"
+            r="43"
+          ></circle>
+
+        </svg>
+
+
+        <!-- THREE DOTS -->
+
+        <div
+          class="hold-dots"
+          id="holdDots"
+        >
+
+          <span></span>
+
+          <span></span>
+
+          <span></span>
+
+        </div>
+
+
+      </div>
+
+
+      <div
+        class="hold-label"
+        id="holdLabel"
+      >
+
+        PRESS &amp; HOLD
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN WEBSITE
+===================================================== -->
 
 <div class="container">
 
-<!-- =========================
+
+<!-- =====================================================
      HEADER
-========================= -->
+===================================================== -->
 
 <nav>
 
+
+  <!-- LEFT BRAND -->
+
   <div class="brand-area">
 
+
+    <!-- CATHS-MAIN LOGO -->
+
     <div class="brand-logo">
-      <img src="caths-logo.png" alt="CATHS-MAIN Logo">
+
+      <img
+        src="caths-logo.png"
+        alt="CATHS-MAIN Logo"
+      >
+
     </div>
+
 
     <div class="brand-divider"></div>
 
+
+    <!-- SSLG LOGO -->
+
     <div class="brand-logo">
-      <img src="sslg-logo.png" alt="SSLG Logo">
+
+      <img
+        src="sslg-logo.png"
+        alt="SSLG Logo"
+      >
+
     </div>
 
+
     <div class="brand-divider"></div>
+
+
+    <!-- NAME -->
 
     <div class="brand-name">
+
       CATHS-MAIN SSLG
+
     </div>
 
+
   </div>
+
+
+  <!-- LINKS -->
 
   <div class="navlinks">
 
@@ -807,47 +2191,73 @@ footer{
 
   </div>
 
+
+  <!-- GET APP -->
+
   <a
     class="btn btn-primary header-button"
     href="#download"
   >
+
     Get the App
+
   </a>
+
 
 </nav>
 
 
-<!-- =========================
+
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
 <section class="hero">
 
+
 <div class="hero-grid">
+
+
+  <!-- LEFT HERO -->
 
   <div>
 
+
     <span class="eyebrow">
+
       📱 OFFICIAL CATHS-MAIN APP
+
     </span>
 
+
     <h1>
+
       Your school.<br>
+
       <span class="grad">
+
         Your voice.
+
       </span><br>
+
       Your community.
+
     </h1>
 
+
     <p>
+
       CATHS-MAIN brings student voice,
       school updates, friendships,
       messaging, guidance requests,
       news, and feedback together
       in one place.
+
     </p>
 
+
     <div class="actions">
+
 
       <!-- DIRECT APK DOWNLOAD -->
 
@@ -856,242 +2266,498 @@ footer{
         href="app-release.apk"
         download="CATHS-MAIN-SSLG.apk"
       >
+
         ⬇️ Download for Android
+
       </a>
+
 
       <a
         class="btn btn-ghost"
         href="#features"
       >
+
         Explore Features
+
       </a>
 
+
     </div>
+
 
     <div class="trust">
 
-      <span>✓ Student Voice</span>
-      <span>✓ Real-time Community</span>
-      <span>✓ School Updates</span>
+      <span>
+        ✓ Student Voice
+      </span>
+
+      <span>
+        ✓ Real-time Community
+      </span>
+
+      <span>
+        ✓ School Updates
+      </span>
 
     </div>
 
+
   </div>
 
+
+
+  <!-- FLOATING PHONE -->
 
   <div class="phone-wrap">
 
+
     <div class="glow"></div>
+
 
     <div class="phone">
 
+
       <div class="screen">
+
+
+        <!-- PHONE TOP -->
 
         <div class="topbar">
 
+
+          <!-- TWO LOGOS -->
+
           <div class="mini-brand">
 
-            <img
-              src="caths-logo.png"
-              alt="CATHS-MAIN"
-            >
+
+            <div class="mini-logos">
+
+
+              <img
+                src="caths-logo.png"
+                alt="CATHS-MAIN Logo"
+              >
+
+
+              <img
+                src="sslg-logo.png"
+                alt="SSLG Logo"
+              >
+
+
+            </div>
+
 
             <span>
+
               CATHS-MAIN SSLG
+
             </span>
 
+
           </div>
+
 
           <div class="screen-title">
+
             Student Voice
+
           </div>
+
 
           <div class="screen-sub">
+
             Your Voice Matters.
+
           </div>
 
+
         </div>
+
+
+        <!-- PHONE CONTENT -->
 
         <div class="cards">
 
-          <div class="card">
-            <strong>📰 Latest News</strong>
-            <div class="line"></div>
-            <div class="line short"></div>
-          </div>
 
           <div class="card">
-            <strong>💬 Messages</strong>
+
+            <strong>
+              📰 Latest News
+            </strong>
+
             <div class="line"></div>
+
             <div class="line short"></div>
+
           </div>
 
-          <div class="card">
-            <strong>🗣️ Student Voice</strong>
-            <div class="line"></div>
-            <div class="line short"></div>
-          </div>
 
           <div class="card">
-            <strong>👥 Friends</strong>
+
+            <strong>
+              💬 Messages
+            </strong>
+
             <div class="line"></div>
+
             <div class="line short"></div>
+
           </div>
+
+
+          <div class="card">
+
+            <strong>
+              🗣️ Student Voice
+            </strong>
+
+            <div class="line"></div>
+
+            <div class="line short"></div>
+
+          </div>
+
+
+          <div class="card">
+
+            <strong>
+              👥 Friends
+            </strong>
+
+            <div class="line"></div>
+
+            <div class="line short"></div>
+
+          </div>
+
 
         </div>
+
+
+        <!-- PHONE NAV -->
 
         <div class="navmock">
 
+
           <span>
+
             🏠
-            <small>Home</small>
+
+            <small>
+              Home
+            </small>
+
           </span>
 
+
           <span>
+
             📰
-            <small>News</small>
+
+            <small>
+              News
+            </small>
+
           </span>
 
+
           <span>
+
             💬
-            <small>Messages</small>
+
+            <small>
+              Messages
+            </small>
+
           </span>
 
+
           <span>
+
             👤
-            <small>Profile</small>
+
+            <small>
+              Profile
+            </small>
+
           </span>
+
 
         </div>
 
+
       </div>
+
 
     </div>
 
+
   </div>
 
+
 </div>
+
 
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
      FEATURES
-========================= -->
+===================================================== -->
 
 <section id="features">
 
+
 <div class="section-head">
 
+
   <h2>
+
     Everything students need
+
   </h2>
 
+
   <p>
+
     Built around the real features
     of your CATHS-SSLG project.
+
   </p>
 
+
 </div>
+
+
 
 <div class="features">
 
+
+  <!-- NEWS -->
+
   <div class="feature">
-    <div class="icon">📰</div>
-    <h3>News & News Feed</h3>
+
+    <div class="icon">
+      📰
+    </div>
+
+    <h3>
+      News & News Feed
+    </h3>
+
     <p>
+
       See official school updates,
       posts, comments, reactions,
       sharing, and publishing tools.
+
     </p>
+
   </div>
 
-  <div class="feature">
-    <div class="icon">💬</div>
-    <h3>Messages & Groups</h3>
-    <p>
-      Chat with friends, create group chats,
-      manage members, and share messages.
-    </p>
-  </div>
+
+  <!-- MESSAGES -->
 
   <div class="feature">
-    <div class="icon">👥</div>
-    <h3>Friends</h3>
+
+    <div class="icon">
+      💬
+    </div>
+
+    <h3>
+      Messages & Groups
+    </h3>
+
     <p>
-      Find classmates, send requests,
-      view friends, and manage connections.
+
+      Chat with friends,
+      create group chats,
+      manage members,
+      and share messages.
+
     </p>
+
   </div>
 
-  <div class="feature">
-    <div class="icon">🧑‍🏫</div>
-    <h3>Guidance</h3>
-    <p>
-      Send guidance requests and connect
-      student support with school workflows.
-    </p>
-  </div>
+
+  <!-- FRIENDS -->
 
   <div class="feature">
-    <div class="icon">🗣️</div>
-    <h3>Student Voice</h3>
+
+    <div class="icon">
+      👥
+    </div>
+
+    <h3>
+      Friends
+    </h3>
+
     <p>
+
+      Find classmates,
+      send requests,
+      view friends,
+      and manage connections.
+
+    </p>
+
+  </div>
+
+
+  <!-- GUIDANCE -->
+
+  <div class="feature">
+
+    <div class="icon">
+      🧑‍🏫
+    </div>
+
+    <h3>
+      Guidance
+    </h3>
+
+    <p>
+
+      Send guidance requests
+      and connect student support
+      with school workflows.
+
+    </p>
+
+  </div>
+
+
+  <!-- VOICE -->
+
+  <div class="feature">
+
+    <div class="icon">
+      🗣️
+    </div>
+
+    <h3>
+      Student Voice
+    </h3>
+
+    <p>
+
       Submit concerns and suggestions
       and make your voice heard.
+
     </p>
+
   </div>
 
+
+  <!-- PROFILE -->
+
   <div class="feature">
-    <div class="icon">👤</div>
-    <h3>Profiles</h3>
+
+    <div class="icon">
+      👤
+    </div>
+
+    <h3>
+      Profiles
+    </h3>
+
     <p>
-      Student profiles, posts, comments,
+
+      Student profiles,
+      posts, comments,
       reactions, and profile editing.
+
     </p>
+
   </div>
 
-  <div class="feature">
-    <div class="icon">🔔</div>
-    <h3>Community Activity</h3>
-    <p>
-      Stay updated with activity across
-      news, friends, messages, and posts.
-    </p>
-  </div>
+
+  <!-- ACTIVITY -->
 
   <div class="feature">
-    <div class="icon">📲</div>
-    <h3>Installable App</h3>
+
+    <div class="icon">
+      🔔
+    </div>
+
+    <h3>
+      Community Activity
+    </h3>
+
     <p>
-      Enjoy a mobile-friendly experience
-      designed for the CATHS community.
+
+      Stay updated with activity
+      across news, friends,
+      messages, and posts.
+
     </p>
+
   </div>
+
+
+  <!-- APP -->
+
+  <div class="feature">
+
+    <div class="icon">
+      📲
+    </div>
+
+    <h3>
+      Installable App
+    </h3>
+
+    <p>
+
+      Enjoy a mobile-friendly
+      experience designed for
+      the CATHS community.
+
+    </p>
+
+  </div>
+
 
 </div>
+
 
 </section>
 
 
-<!-- =========================
-     INSTALL
-========================= -->
 
-<section id="install" class="install-section">
+<!-- =====================================================
+     HOW TO INSTALL
+===================================================== -->
+
+<section
+  id="install"
+  class="install-section"
+>
+
 
 <div class="section-head">
 
+
   <h2>
+
     How to install CATHS-MAIN
+
   </h2>
 
+
   <p>
+
     Follow these three simple steps
     to install the app on Android.
+
   </p>
 
+
 </div>
+
+
 
 <div class="install-phones">
 
@@ -1100,156 +2766,680 @@ footer{
 
   <div class="install-item">
 
+
     <div class="install-phone">
+
 
       <img
         src="image1.png"
-        alt="Step 1"
+        alt="Step 1 installation"
       >
+
 
     </div>
 
+
     <div class="step-content">
+
 
       <div class="step-number">
         1
       </div>
 
+
       <h3>
         Download the App
       </h3>
 
+
       <p>
-        Tap the download button and save
-        the CATHS-MAIN APK to your
-        Android device.
+
+        Tap the download button
+        and save the CATHS-MAIN APK
+        to your Android device.
+
       </p>
+
 
     </div>
 
+
   </div>
+
 
 
   <!-- STEP 2 -->
 
   <div class="install-item">
 
+
     <div class="install-phone">
+
 
       <img
         src="image2.png"
-        alt="Step 2"
+        alt="Step 2 installation"
       >
+
 
     </div>
 
+
     <div class="step-content">
+
 
       <div class="step-number">
         2
       </div>
 
+
       <h3>
         Open the APK
       </h3>
 
+
       <p>
-        Open the downloaded APK and allow
-        your device to install the
-        application.
+
+        Open the downloaded APK
+        and allow your device
+        to install the application.
+
       </p>
+
 
     </div>
 
+
   </div>
+
 
 
   <!-- STEP 3 -->
 
   <div class="install-item">
 
+
     <div class="install-phone">
+
 
       <img
         src="image3.png"
-        alt="Step 3"
+        alt="Step 3 installation"
       >
+
 
     </div>
 
+
     <div class="step-content">
+
 
       <div class="step-number">
         3
       </div>
 
+
       <h3>
         Install & Open
       </h3>
 
+
       <p>
-        Finish the installation, open
-        CATHS-MAIN, and sign in
-        to your account.
+
+        Finish the installation,
+        open CATHS-MAIN,
+        and sign in to your account.
+
       </p>
+
 
     </div>
 
+
   </div>
 
+
 </div>
+
 
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
      DOWNLOAD CTA
-========================= -->
+===================================================== -->
 
 <section id="download">
 
+
 <div class="download">
+
 
   <div>
 
+
     <h2>
+
       Ready to join CATHS-MAIN?
+
     </h2>
 
+
     <p>
+
       Download the official Android app
       and bring the CATHS-SSLG student
       experience with you.
+
     </p>
+
 
   </div>
 
-  <!-- DIRECT APK DOWNLOAD -->
+
+  <!-- DIRECT APK -->
 
   <a
     class="btn"
     href="app-release.apk"
     download="CATHS-MAIN-SSLG.apk"
   >
+
     ⬇️ Download App
+
   </a>
 
+
 </div>
+
 
 </section>
 
 
-<!-- =========================
+
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
-  © 2026 CATHS-MAIN SSLG • Student Voice
+  © 2026 CATHS-MAIN SSLG
+  • Student Voice
 
 </footer>
 
+
 </div>
+
+
+
+<!-- =====================================================
+     PRESS & HOLD JAVASCRIPT
+===================================================== -->
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    const pageLoader =
+      document.getElementById(
+        "pageLoader"
+      );
+
+    const holdRing =
+      document.getElementById(
+        "holdRing"
+      );
+
+    const holdFill =
+      document.getElementById(
+        "holdFill"
+      );
+
+    const holdLabel =
+      document.getElementById(
+        "holdLabel"
+      );
+
+
+    /* =====================================================
+       SETTINGS
+    ===================================================== */
+
+    const HOLD_TIME = 3000;
+
+    const CIRCUMFERENCE = 270.176;
+
+
+    let holding = false;
+
+    let completed = false;
+
+    let startTime = 0;
+
+    let animationFrame = null;
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    function resetHold(){
+
+      if(completed){
+        return;
+      }
+
+      holding = false;
+
+      holdRing.classList.remove(
+        "holding",
+        "ready"
+      );
+
+      holdFill.style.strokeDashoffset =
+        CIRCUMFERENCE;
+
+      holdLabel.textContent =
+        "PRESS & HOLD";
+
+    }
+
+
+    /* =====================================================
+       UPDATE PROGRESS
+    ===================================================== */
+
+    function updateHold(){
+
+      if(!holding){
+        return;
+      }
+
+
+      const elapsed =
+        performance.now() -
+        startTime;
+
+
+      const progress =
+        Math.min(
+          elapsed /
+          HOLD_TIME,
+          1
+        );
+
+
+      const offset =
+        CIRCUMFERENCE -
+        (
+          CIRCUMFERENCE *
+          progress
+        );
+
+
+      holdFill.style.strokeDashoffset =
+        offset;
+
+
+      /* STARTED */
+
+      if(progress > .02){
+
+        holdRing.classList.add(
+          "holding"
+        );
+
+        holdLabel.textContent =
+          "KEEP HOLDING";
+
+      }
+
+
+      /* NEAR COMPLETE */
+
+      if(progress >= .78){
+
+        holdRing.classList.add(
+          "ready"
+        );
+
+        holdLabel.textContent =
+          "ALMOST THERE";
+
+      }
+
+
+      /* COMPLETE */
+
+      if(progress >= 1){
+
+        finishOpening();
+
+        return;
+
+      }
+
+
+      animationFrame =
+        requestAnimationFrame(
+          updateHold
+        );
+
+    }
+
+
+    /* =====================================================
+       START HOLD
+    ===================================================== */
+
+    function startHold(event){
+
+      if(completed){
+        return;
+      }
+
+
+      if(event.cancelable){
+
+        event.preventDefault();
+
+      }
+
+
+      holding = true;
+
+      startTime =
+        performance.now();
+
+
+      holdRing.classList.add(
+        "holding"
+      );
+
+
+      holdLabel.textContent =
+        "KEEP HOLDING";
+
+
+      if(animationFrame){
+
+        cancelAnimationFrame(
+          animationFrame
+        );
+
+      }
+
+
+      animationFrame =
+        requestAnimationFrame(
+          updateHold
+        );
+
+    }
+
+
+    /* =====================================================
+       RELEASE
+    ===================================================== */
+
+    function endHold(event){
+
+      if(event && event.cancelable){
+
+        event.preventDefault();
+
+      }
+
+
+      if(
+        !holding ||
+        completed
+      ){
+
+        return;
+
+      }
+
+
+      holding = false;
+
+
+      if(animationFrame){
+
+        cancelAnimationFrame(
+          animationFrame
+        );
+
+      }
+
+
+      holdRing.classList.remove(
+        "holding",
+        "ready"
+      );
+
+
+      holdFill.style.transition =
+        "stroke-dashoffset .35s ease";
+
+
+      holdFill.style.strokeDashoffset =
+        CIRCUMFERENCE;
+
+
+      holdLabel.textContent =
+        "PRESS & HOLD";
+
+
+      setTimeout(
+        function(){
+
+          holdFill.style.transition =
+            "stroke-dashoffset .05s linear";
+
+        },
+        360
+      );
+
+    }
+
+
+    /* =====================================================
+       OPEN WEBSITE
+    ===================================================== */
+
+    function finishOpening(){
+
+      if(completed){
+        return;
+      }
+
+
+      completed = true;
+
+      holding = false;
+
+
+      if(animationFrame){
+
+        cancelAnimationFrame(
+          animationFrame
+        );
+
+      }
+
+
+      holdFill.style.strokeDashoffset =
+        "0";
+
+
+      holdRing.classList.add(
+        "ready"
+      );
+
+
+      holdLabel.textContent =
+        "WELCOME TO CATHS-MAIN";
+
+
+      /*
+        BIG GLOW
+      */
+
+      setTimeout(
+        function(){
+
+          holdRing.style.transform =
+            "scale(1.35)";
+
+
+          holdRing.style.filter =
+            "drop-shadow(0 0 30px rgba(135,215,255,.9))";
+
+        },
+        80
+      );
+
+
+      /*
+        OPEN WEBSITE
+      */
+
+      setTimeout(
+        function(){
+
+          pageLoader.classList.add(
+            "hide"
+          );
+
+
+          document.body.classList.remove(
+            "loader-active"
+          );
+
+
+        },
+        850
+      );
+
+    }
+
+
+    /* =====================================================
+       TOUCH + MOUSE
+    ===================================================== */
+
+    holdRing.addEventListener(
+      "pointerdown",
+      startHold
+    );
+
+
+    holdRing.addEventListener(
+      "pointerup",
+      endHold
+    );
+
+
+    holdRing.addEventListener(
+      "pointercancel",
+      endHold
+    );
+
+
+    /*
+      Desktop:
+      if mouse leaves the circle
+      before 3 seconds, cancel.
+    */
+
+    holdRing.addEventListener(
+      "pointerleave",
+      function(event){
+
+        if(
+          holding &&
+          event.pointerType === "mouse"
+        ){
+
+          endHold(event);
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       KEYBOARD SUPPORT
+    ===================================================== */
+
+    holdRing.setAttribute(
+      "tabindex",
+      "0"
+    );
+
+
+    holdRing.addEventListener(
+      "keydown",
+      function(event){
+
+        if(
+          event.code === "Space" ||
+          event.code === "Enter"
+        ){
+
+          if(!holding){
+
+            startHold(event);
+
+          }
+
+        }
+
+      }
+    );
+
+
+    holdRing.addEventListener(
+      "keyup",
+      function(event){
+
+        if(
+          event.code === "Space" ||
+          event.code === "Enter"
+        ){
+
+          endHold(event);
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       PREVENT LONG-PRESS MENU
+    ===================================================== */
+
+    holdRing.addEventListener(
+      "contextmenu",
+      function(event){
+
+        event.preventDefault();
+
+      }
+    );
+
+  }
+);
+
+</script>
+
 
 </body>
 </html>
