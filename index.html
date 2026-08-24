@@ -8,8 +8,16 @@
 
 <title>CATHS-MAIN SSLG</title>
 
+<!-- =====================================================
+     FAVICON
+===================================================== -->
+
 <link rel="icon" type="image/png" href="sslg-logo.png">
 <link rel="shortcut icon" type="image/png" href="sslg-logo.png">
+
+<!-- =====================================================
+     FONT
+===================================================== -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +27,37 @@
   rel="stylesheet"
 >
 
+
+<!-- =====================================================
+     FORCE WEBSITE TO START AT TOP
+===================================================== -->
+
+<script>
+
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+window.addEventListener("load", function(){
+
+  window.scrollTo(0, 0);
+
+  if(window.location.hash){
+
+    history.replaceState(
+      null,
+      "",
+      window.location.pathname +
+      window.location.search
+    );
+
+  }
+
+});
+
+</script>
+
+
 <style>
 
 /* =========================================================
@@ -26,12 +65,17 @@
 ========================================================= */
 
 :root{
+
   --blue:#003da5;
   --blue2:#0b66ff;
+
   --ink:#10233f;
   --muted:#64748b;
+
   --line:#dfe8f7;
+
   --white:#ffffff;
+
 }
 
 
@@ -48,7 +92,9 @@ html{
 }
 
 body{
+
   margin:0;
+
   font-family:
     Poppins,
     system-ui,
@@ -60,11 +106,13 @@ body{
   color:var(--ink);
 
   background:
+
     radial-gradient(
       circle at top right,
       rgba(158,202,255,.28),
       transparent 30%
     ),
+
     linear-gradient(
       180deg,
       #eef6ff 0%,
@@ -73,13 +121,16 @@ body{
     );
 
   overflow-x:hidden;
+
 }
 
 body.loader-active{
   overflow:hidden;
 }
 
+
 body::before{
+
   content:"";
 
   position:fixed;
@@ -91,6 +142,7 @@ body::before{
   right:-160px;
 
   background:
+
     radial-gradient(
       circle,
       rgba(130,185,255,.18),
@@ -98,36 +150,51 @@ body::before{
     );
 
   pointer-events:none;
+
   z-index:-1;
+
 }
 
+
 .container{
-  width:min(1160px,92%);
+
+  width:min(
+    1160px,
+    92%
+  );
+
   margin:auto;
+
 }
 
 
 /* =========================================================
-   PROJECT SSLG OPENING
+   PROJECT SSLG SPLASH SCREEN
 ========================================================= */
 
 #pageLoader{
+
   position:fixed;
+
   inset:0;
+
   z-index:99999;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
   overflow:hidden;
 
   background:
+
     radial-gradient(
       circle at center,
-      rgba(45,125,255,.20),
+      rgba(45,125,255,.22),
       transparent 34%
     ),
+
     linear-gradient(
       145deg,
       #00132e,
@@ -136,45 +203,65 @@ body::before{
     );
 
   opacity:1;
+
   visibility:visible;
 
   transition:
-    opacity .9s cubic-bezier(.2,.8,.2,1),
+
+    opacity .9s
+      cubic-bezier(.2,.8,.2,1),
+
     visibility .9s ease,
-    transform .9s cubic-bezier(.2,.8,.2,1);
+
+    transform .9s
+      cubic-bezier(.2,.8,.2,1);
+
 }
 
+
 #pageLoader.hide{
+
   opacity:0;
+
   visibility:hidden;
+
   pointer-events:none;
 
   transform:scale(1.08);
+
 }
 
 
-/* BACKGROUND ORBITS */
+/* =========================================================
+   SPLASH BACKGROUND ORBITS
+========================================================= */
 
 #pageLoader::before{
+
   content:"";
 
   position:absolute;
 
-  width:660px;
-  height:660px;
+  width:650px;
+  height:650px;
 
   border-radius:50%;
 
-  border:1px solid rgba(255,255,255,.08);
+  border:
+    1px solid
+    rgba(255,255,255,.08);
 
   animation:
     loaderOrbit1
     8s
     linear
     infinite;
+
 }
 
+
 #pageLoader::after{
+
   content:"";
 
   position:absolute;
@@ -184,19 +271,23 @@ body::before{
 
   border-radius:50%;
 
-  border:1px solid rgba(255,255,255,.045);
+  border:
+    1px solid
+    rgba(255,255,255,.045);
 
   animation:
     loaderOrbit2
     12s
     linear
     infinite;
+
 }
 
 
-/* CENTER BACKGROUND GLOW */
+/* BACKGROUND GLOW */
 
 .loader-bg-glow{
+
   position:absolute;
 
   width:250px;
@@ -205,6 +296,7 @@ body::before{
   border-radius:50%;
 
   background:
+
     radial-gradient(
       circle,
       rgba(105,184,255,.20),
@@ -218,89 +310,123 @@ body::before{
     3s
     ease-in-out
     infinite;
-}
 
-
-/* LOADER CONTENT */
-
-.loader-content{
-  position:relative;
-  z-index:5;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-
-  text-align:center;
 }
 
 
 /* =========================================================
-   LOADER LOGO
+   SPLASH CONTENT
+========================================================= */
+
+.loader-content{
+
+  position:relative;
+
+  z-index:5;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  text-align:center;
+
+}
+
+
+/* =========================================================
+   SPLASH LOGO
 ========================================================= */
 
 .loader-logo-wrap{
+
   position:relative;
 
   width:155px;
   height:155px;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
   margin-bottom:26px;
+
 }
+
 
 .loader-ring{
+
   position:absolute;
+
   border-radius:50%;
+
   pointer-events:none;
+
 }
 
+
 .loader-ring.ring-1{
+
   inset:0;
 
-  border:1px solid rgba(255,255,255,.28);
+  border:
+    1px solid
+    rgba(255,255,255,.28);
 
   animation:
     ringPulse
     2.4s
     ease-in-out
     infinite;
+
 }
 
+
 .loader-ring.ring-2{
+
   inset:13px;
 
-  border:1px dashed rgba(172,221,255,.23);
+  border:
+    1px dashed
+    rgba(172,221,255,.23);
 
   animation:
     ringRotate
     7s
     linear
     infinite;
+
 }
 
+
 .loader-ring.ring-3{
+
   inset:27px;
 
-  border:1px solid rgba(255,255,255,.10);
+  border:
+    1px solid
+    rgba(255,255,255,.10);
 
   animation:
     ringRotateReverse
     5s
     linear
     infinite;
+
 }
 
+
 .loader-logo{
+
   position:relative;
 
   width:105px;
   height:105px;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
@@ -311,9 +437,12 @@ body::before{
     2.7s
     ease-in-out
     infinite;
+
 }
 
+
 .loader-logo::before{
+
   content:"";
 
   position:absolute;
@@ -323,6 +452,7 @@ body::before{
   border-radius:50%;
 
   background:
+
     radial-gradient(
       circle,
       rgba(255,255,255,.25),
@@ -337,10 +467,14 @@ body::before{
     2s
     ease-in-out
     infinite;
+
 }
 
+
 .loader-logo img{
+
   position:relative;
+
   z-index:2;
 
   width:100%;
@@ -353,15 +487,17 @@ body::before{
       0 0 19px
       rgba(157,216,255,.85)
     );
+
 }
 
 
 /* =========================================================
-   LOADER TITLE
+   SPLASH TITLE
 ========================================================= */
 
 .loader-title{
-  color:#fff;
+
+  color:#ffffff;
 
   font-size:
     clamp(
@@ -392,17 +528,25 @@ body::before{
   text-shadow:
     0 4px 24px
     rgba(0,0,0,.28);
+
 }
+
 
 .loader-title span{
+
   color:#a6d3ff;
+
 }
 
 
-/* SUBTITLE */
+/* =========================================================
+   SPLASH SUBTITLE
+========================================================= */
 
 .loader-subtitle{
-  color:rgba(255,255,255,.72);
+
+  color:
+    rgba(255,255,255,.72);
 
   font-size:12px;
 
@@ -420,6 +564,7 @@ body::before{
     .5s
     cubic-bezier(.2,.8,.2,1)
     forwards;
+
 }
 
 
@@ -428,9 +573,11 @@ body::before{
 ========================================================= */
 
 .loader-line{
+
   position:relative;
 
   width:220px;
+
   height:4px;
 
   overflow:hidden;
@@ -443,15 +590,20 @@ body::before{
   box-shadow:
     0 0 20px
     rgba(136,204,255,.08);
+
 }
 
+
 .loader-progress{
+
   width:0%;
+
   height:100%;
 
   border-radius:999px;
 
   background:
+
     linear-gradient(
       90deg,
       #7db7ff,
@@ -468,18 +620,22 @@ body::before{
     1.9s
     cubic-bezier(.4,.1,.2,1)
     forwards;
+
 }
 
 
 /* =========================================================
-   PRESS & HOLD AREA
+   PRESS & HOLD
 ========================================================= */
 
 .hold-area{
+
   margin-top:24px;
 
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
 
   opacity:0;
@@ -492,15 +648,19 @@ body::before{
     1.95s
     cubic-bezier(.2,.8,.2,1)
     forwards;
+
 }
 
+
 .hold-ring{
+
   position:relative;
 
   width:118px;
   height:118px;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
@@ -509,24 +669,35 @@ body::before{
   cursor:pointer;
 
   user-select:none;
+
   -webkit-user-select:none;
+
   -webkit-touch-callout:none;
 
   touch-action:none;
 
   transition:
+
     transform .35s ease,
+
     filter .35s ease;
+
 }
+
 
 .hold-ring:hover{
+
   transform:scale(1.035);
+
 }
 
 
-/* CIRCULAR PROGRESS */
+/* =========================================================
+   HOLD PROGRESS CIRCLE
+========================================================= */
 
 .hold-progress{
+
   position:absolute;
 
   inset:0;
@@ -537,25 +708,36 @@ body::before{
   transform:rotate(-90deg);
 
   overflow:visible;
+
 }
+
 
 .hold-track,
 .hold-fill{
+
   fill:none;
+
   stroke-width:2.5;
+
 }
+
 
 .hold-track{
+
   stroke:
     rgba(255,255,255,.10);
+
 }
 
+
 .hold-fill{
+
   stroke:#9ed4ff;
 
   stroke-linecap:round;
 
   stroke-dasharray:270.176;
+
   stroke-dashoffset:270.176;
 
   filter:
@@ -566,12 +748,16 @@ body::before{
 
   transition:
     stroke-dashoffset .05s linear;
+
 }
 
 
-/* THREE DOTS */
+/* =========================================================
+   THREE DOTS
+========================================================= */
 
 .hold-dots{
+
   position:relative;
 
   width:74px;
@@ -587,6 +773,7 @@ body::before{
   border-radius:50%;
 
   background:
+
     radial-gradient(
       circle,
       rgba(255,255,255,.09),
@@ -595,6 +782,7 @@ body::before{
     );
 
   box-shadow:
+
     inset 0 0 25px
     rgba(130,200,255,.06),
 
@@ -602,46 +790,69 @@ body::before{
     rgba(75,160,255,.08);
 
   transition:
-    width .8s cubic-bezier(.2,.8,.2,1),
-    height .8s cubic-bezier(.2,.8,.2,1),
+
+    width .8s
+      cubic-bezier(.2,.8,.2,1),
+
+    height .8s
+      cubic-bezier(.2,.8,.2,1),
+
     gap .8s ease,
+
     box-shadow .8s ease,
+
     background .8s ease,
-    transform .8s cubic-bezier(.2,.8,.2,1);
+
+    transform .8s
+      cubic-bezier(.2,.8,.2,1);
+
 }
 
+
 .hold-dots span{
+
   width:7px;
   height:7px;
 
   border-radius:50%;
 
-  background:#fff;
+  background:#ffffff;
 
   box-shadow:
     0 0 12px
     rgba(163,219,255,.95);
 
   transition:
-    transform .8s cubic-bezier(.2,.8,.2,1),
+
+    transform .8s
+      cubic-bezier(.2,.8,.2,1),
+
     width .8s ease,
+
     height .8s ease;
+
 }
 
 
 /* HOLDING */
 
 .hold-ring.holding{
+
   transform:scale(1.06);
+
 }
 
-.hold-ring.holding .hold-dots{
+
+.hold-ring.holding
+.hold-dots{
+
   width:86px;
   height:86px;
 
   gap:22px;
 
   background:
+
     radial-gradient(
       circle,
       rgba(126,193,255,.16),
@@ -650,53 +861,77 @@ body::before{
     );
 
   box-shadow:
+
     inset 0 0 30px
     rgba(135,208,255,.10),
 
     0 0 35px
     rgba(75,165,255,.20);
+
 }
 
-.hold-ring.holding .hold-dots span{
-  width:9px;
-  height:9px;
-}
 
 .hold-ring.holding
-.hold-dots span:nth-child(1){
+.hold-dots span{
+
+  width:9px;
+  height:9px;
+
+}
+
+
+.hold-ring.holding
+.hold-dots
+span:nth-child(1){
+
   transform:
     translateX(-4px)
     scale(1.08);
+
 }
 
+
 .hold-ring.holding
-.hold-dots span:nth-child(2){
+.hold-dots
+span:nth-child(2){
+
   transform:
     translateY(-4px)
     scale(1.2);
+
 }
 
+
 .hold-ring.holding
-.hold-dots span:nth-child(3){
+.hold-dots
+span:nth-child(3){
+
   transform:
     translateX(4px)
     scale(1.08);
+
 }
 
 
-/* ALMOST DONE */
+/* READY */
 
 .hold-ring.ready{
+
   transform:scale(1.13);
+
 }
 
-.hold-ring.ready .hold-dots{
+
+.hold-ring.ready
+.hold-dots{
+
   width:94px;
   height:94px;
 
   gap:28px;
 
   background:
+
     radial-gradient(
       circle,
       rgba(135,207,255,.22),
@@ -707,38 +942,57 @@ body::before{
   box-shadow:
     0 0 45px
     rgba(125,203,255,.28);
+
 }
 
-.hold-ring.ready .hold-dots span{
-  width:10px;
-  height:10px;
-}
 
 .hold-ring.ready
-.hold-dots span:nth-child(1){
+.hold-dots
+span{
+
+  width:10px;
+  height:10px;
+
+}
+
+
+.hold-ring.ready
+.hold-dots
+span:nth-child(1){
+
   transform:
     translateX(-8px)
     scale(1.2);
+
 }
 
+
 .hold-ring.ready
-.hold-dots span:nth-child(2){
+.hold-dots
+span:nth-child(2){
+
   transform:
     translateY(-7px)
     scale(1.3);
+
 }
 
+
 .hold-ring.ready
-.hold-dots span:nth-child(3){
+.hold-dots
+span:nth-child(3){
+
   transform:
     translateX(8px)
     scale(1.2);
+
 }
 
 
-/* LABEL */
+/* HOLD LABEL */
 
 .hold-label{
+
   margin-top:12px;
 
   color:
@@ -751,30 +1005,42 @@ body::before{
   letter-spacing:2.2px;
 
   transition:
+
     color .3s ease,
+
     transform .3s ease;
+
 }
 
-.hold-ring.holding + .hold-label{
+
+.hold-ring.holding
++ .hold-label{
+
   color:#b8ddff;
 
   transform:translateY(-2px);
+
 }
 
-.hold-ring.ready + .hold-label{
-  color:#fff;
+
+.hold-ring.ready
++ .hold-label{
+
+  color:#ffffff;
 
   transform:
     translateY(-3px)
     scale(1.04);
+
 }
 
 
 /* =========================================================
-   LOADER ANIMATIONS
+   SPLASH ANIMATIONS
 ========================================================= */
 
 @keyframes loaderOrbit1{
+
   from{
     transform:rotate(0deg);
   }
@@ -782,9 +1048,12 @@ body::before{
   to{
     transform:rotate(360deg);
   }
+
 }
+
 
 @keyframes loaderOrbit2{
+
   from{
     transform:rotate(360deg);
   }
@@ -792,109 +1061,166 @@ body::before{
   to{
     transform:rotate(0deg);
   }
+
 }
 
+
 @keyframes backgroundPulse{
+
   0%,
   100%{
+
     transform:scale(.82);
+
     opacity:.55;
+
   }
 
   50%{
+
     transform:scale(1.12);
+
     opacity:1;
+
   }
+
 }
 
+
 @keyframes logoFloat{
+
   0%,
   100%{
+
     transform:
       translateY(6px)
       scale(.94);
+
   }
 
   50%{
+
     transform:
       translateY(-5px)
       scale(1.04);
+
   }
+
 }
+
 
 @keyframes logoGlow{
+
   0%,
   100%{
+
     opacity:.55;
-    transform:scale(.9);
+
+    transform:scale(.90);
+
   }
 
   50%{
+
     opacity:1;
+
     transform:scale(1.12);
+
   }
+
 }
+
 
 @keyframes ringPulse{
+
   0%,
   100%{
-    transform:scale(.9);
+
+    transform:scale(.90);
+
     opacity:.35;
+
   }
 
   50%{
+
     transform:scale(1.06);
+
     opacity:.85;
+
   }
+
 }
 
+
 @keyframes ringRotate{
+
   to{
     transform:rotate(360deg);
   }
+
 }
 
+
 @keyframes ringRotateReverse{
+
   to{
     transform:rotate(-360deg);
   }
+
 }
 
+
 @keyframes loaderTitleIn{
+
   from{
+
     opacity:0;
 
     transform:
       translateY(16px)
       scale(.95);
+
   }
 
   to{
+
     opacity:1;
 
     transform:
       translateY(0)
       scale(1);
+
   }
+
 }
 
+
 @keyframes loaderSubtitleIn{
+
   from{
+
     opacity:0;
 
     transform:
       translateY(9px);
+
   }
 
   to{
+
     opacity:1;
 
     transform:
       translateY(0);
+
   }
+
 }
 
+
 @keyframes loadingProgress{
+
   from{
     width:0%;
   }
@@ -902,22 +1228,30 @@ body::before{
   to{
     width:100%;
   }
+
 }
 
+
 @keyframes holdAppear{
+
   from{
+
     opacity:0;
 
     transform:
       translateY(12px);
+
   }
 
   to{
+
     opacity:1;
 
     transform:
       translateY(0);
+
   }
+
 }
 
 
@@ -926,66 +1260,95 @@ body::before{
 ========================================================= */
 
 nav{
+
   width:100%;
+
   min-height:82px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   gap:25px;
+
 }
 
+
 .brand-area{
+
   display:flex;
+
   align-items:center;
 
   gap:12px;
 
   min-width:0;
+
 }
 
+
 .brand-logo{
+
   width:44px;
+
   height:44px;
 
   flex:0 0 44px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
 }
 
+
 .brand-logo img{
+
   width:44px;
+
   height:44px;
 
   display:block;
 
   object-fit:contain;
+
 }
 
+
 .brand-divider{
+
   width:1px;
+
   height:30px;
 
   background:#d7e1ef;
 
   flex:0 0 1px;
+
 }
 
+
 .brand-name{
+
   color:var(--blue);
 
   font-size:19px;
+
   font-weight:800;
 
   letter-spacing:-.4px;
 
   white-space:nowrap;
+
 }
 
+
 .navlinks{
+
   display:flex;
 
   align-items:center;
@@ -993,27 +1356,38 @@ nav{
   gap:28px;
 
   margin-left:auto;
+
 }
 
+
 .navlinks a{
-  text-decoration:none;
 
   color:#53657d;
 
+  text-decoration:none;
+
   font-size:14px;
+
   font-weight:600;
 
   transition:.2s;
+
 }
+
 
 .navlinks a:hover{
+
   color:var(--blue);
+
 }
 
+
 .header-button{
+
   flex:0 0 auto;
 
   white-space:nowrap;
+
 }
 
 
@@ -1022,9 +1396,11 @@ nav{
 ========================================================= */
 
 .btn{
+
   display:inline-flex;
 
   align-items:center;
+
   justify-content:center;
 
   gap:9px;
@@ -1045,14 +1421,20 @@ nav{
   cursor:pointer;
 
   transition:
+
     transform .25s ease,
+
     box-shadow .25s ease;
+
 }
 
+
 .btn-primary{
+
   color:#fff;
 
   background:
+
     linear-gradient(
       135deg,
       var(--blue),
@@ -1062,32 +1444,42 @@ nav{
   box-shadow:
     0 14px 28px
     rgba(0,61,165,.24);
+
 }
 
+
 .btn-primary:hover{
+
   transform:translateY(-3px);
 
   box-shadow:
     0 18px 32px
     rgba(0,61,165,.30);
+
 }
 
+
 .btn-ghost{
-  background:#fff;
+
+  background:#ffffff;
 
   color:var(--blue);
 
   border:
     1px solid
     var(--line);
+
 }
 
+
 .btn-ghost:hover{
+
   transform:translateY(-2px);
 
   box-shadow:
     0 10px 25px
     rgba(20,70,140,.08);
+
 }
 
 
@@ -1096,13 +1488,17 @@ nav{
 ========================================================= */
 
 .hero{
+
   padding:
     56px
     0
     55px;
+
 }
 
+
 .hero-grid{
+
   display:grid;
 
   grid-template-columns:
@@ -1112,9 +1508,12 @@ nav{
   align-items:center;
 
   gap:60px;
+
 }
 
+
 .eyebrow{
+
   display:inline-flex;
 
   align-items:center;
@@ -1138,9 +1537,12 @@ nav{
   font-size:12px;
 
   font-weight:700;
+
 }
 
+
 h1{
+
   font-size:
     clamp(
       42px,
@@ -1156,13 +1558,19 @@ h1{
     18px
     0
     16px;
+
 }
+
 
 .grad{
+
   color:var(--blue);
+
 }
 
+
 .hero p{
+
   max-width:620px;
 
   color:var(--muted);
@@ -1170,9 +1578,12 @@ h1{
   font-size:18px;
 
   line-height:1.8;
+
 }
 
+
 .actions{
+
   display:flex;
 
   flex-wrap:wrap;
@@ -1183,9 +1594,12 @@ h1{
     28px
     0
     18px;
+
 }
 
+
 .trust{
+
   display:flex;
 
   flex-wrap:wrap;
@@ -1197,6 +1611,7 @@ h1{
   font-size:12px;
 
   font-weight:600;
+
 }
 
 
@@ -1205,19 +1620,24 @@ h1{
 ========================================================= */
 
 .phone-wrap{
+
   position:relative;
 
   display:flex;
 
   justify-content:center;
+
 }
 
+
 .glow{
+
   position:absolute;
 
   inset:12% 8%;
 
   background:
+
     radial-gradient(
       circle,
       #a5caff 0%,
@@ -1227,9 +1647,12 @@ h1{
   filter:blur(10px);
 
   opacity:.7;
+
 }
 
+
 .phone{
+
   position:relative;
 
   width:min(
@@ -1256,9 +1679,12 @@ h1{
     5s
     ease-in-out
     infinite;
+
 }
 
+
 .screen{
+
   min-height:575px;
 
   background:#f8fbff;
@@ -1266,9 +1692,12 @@ h1{
   overflow:hidden;
 
   border-radius:29px;
+
 }
 
+
 .topbar{
+
   color:#fff;
 
   padding:
@@ -1277,14 +1706,20 @@ h1{
     22px;
 
   background:
+
     linear-gradient(
       135deg,
       #003da5,
       #0965ff
     );
+
 }
 
+
+/* TWO LOGOS */
+
 .mini-brand{
+
   display:flex;
 
   align-items:center;
@@ -1294,54 +1729,72 @@ h1{
   font-size:14px;
 
   font-weight:800;
+
 }
 
+
 .mini-logos{
+
   display:flex;
 
   align-items:center;
 
   gap:5px;
+
 }
 
+
 .mini-logos img{
+
   width:31px;
+
   height:31px;
 
   display:block;
 
   object-fit:contain;
+
 }
 
+
 .screen-title{
+
   margin-top:27px;
 
   font-size:22px;
 
   font-weight:800;
+
 }
 
+
 .screen-sub{
+
   margin-top:4px;
 
   font-size:11px;
 
   opacity:.86;
+
 }
 
 
 /* PHONE CONTENT */
 
 .cards{
+
   padding:16px;
+
 }
 
+
 .card{
+
   padding:14px;
 
   margin-bottom:12px;
 
-  background:#fff;
+  background:#ffffff;
 
   border:
     1px solid
@@ -1352,17 +1805,23 @@ h1{
   box-shadow:
     0 8px 20px
     rgba(25,56,102,.06);
+
 }
 
+
 .card strong{
+
   display:block;
 
   margin-bottom:7px;
 
   font-size:12px;
+
 }
 
+
 .line{
+
   height:8px;
 
   background:#edf3fb;
@@ -1370,16 +1829,21 @@ h1{
   border-radius:999px;
 
   margin:5px 0;
+
 }
 
+
 .line.short{
+
   width:65%;
+
 }
 
 
 /* PHONE NAV */
 
 .navmock{
+
   display:grid;
 
   grid-template-columns:
@@ -1391,16 +1855,22 @@ h1{
     1px solid
     #e6edf8;
 
-  background:#fff;
+  background:#ffffff;
+
 }
 
+
 .navmock span{
+
   text-align:center;
 
   font-size:17px;
+
 }
 
+
 .navmock small{
+
   display:block;
 
   margin-top:4px;
@@ -1408,18 +1878,25 @@ h1{
   color:#708097;
 
   font-size:8px;
+
 }
 
 
 @keyframes floatPhone{
+
   0%,
   100%{
+
     transform:translateY(0);
+
   }
 
   50%{
+
     transform:translateY(-10px);
+
   }
+
 }
 
 
@@ -1428,10 +1905,14 @@ h1{
 ========================================================= */
 
 section{
+
   padding:84px 0;
+
 }
 
+
 .section-head{
+
   max-width:720px;
 
   margin:
@@ -1439,23 +1920,30 @@ section{
     42px;
 
   text-align:center;
+
 }
 
+
 .section-head h2{
+
   margin:
     0
     0
     10px;
 
   font-size:36px;
+
 }
 
+
 .section-head p{
+
   margin:0;
 
   color:var(--muted);
 
   line-height:1.8;
+
 }
 
 
@@ -1464,18 +1952,22 @@ section{
 ========================================================= */
 
 .features{
+
   display:grid;
 
   grid-template-columns:
     repeat(4,1fr);
 
   gap:16px;
+
 }
 
+
 .feature{
+
   padding:22px;
 
-  background:#fff;
+  background:#ffffff;
 
   border:
     1px solid
@@ -1488,18 +1980,25 @@ section{
     rgba(24,61,115,.05);
 
   transition:.25s ease;
+
 }
 
+
 .feature:hover{
+
   transform:translateY(-5px);
 
   box-shadow:
     0 17px 35px
     rgba(24,61,115,.09);
+
 }
 
+
 .icon{
+
   width:50px;
+
   height:50px;
 
   display:grid;
@@ -1511,18 +2010,24 @@ section{
   border-radius:15px;
 
   font-size:23px;
+
 }
 
+
 .feature h3{
+
   margin:
     16px
     0
     7px;
 
   font-size:16px;
+
 }
 
+
 .feature p{
+
   margin:0;
 
   color:var(--muted);
@@ -1530,6 +2035,7 @@ section{
   font-size:13px;
 
   line-height:1.75;
+
 }
 
 
@@ -1538,10 +2044,14 @@ section{
 ========================================================= */
 
 .install-section{
+
   padding-top:95px;
+
 }
 
+
 .install-phones{
+
   display:grid;
 
   grid-template-columns:
@@ -1550,13 +2060,19 @@ section{
   gap:28px;
 
   align-items:start;
+
 }
+
 
 .install-item{
+
   text-align:center;
+
 }
 
+
 .install-phone{
+
   position:relative;
 
   width:min(
@@ -1581,17 +2097,23 @@ section{
     rgba(15,49,100,.20);
 
   transition:.3s ease;
+
 }
 
+
 .install-phone:hover{
+
   transform:translateY(-8px);
 
   box-shadow:
     0 35px 65px
     rgba(15,49,100,.25);
+
 }
 
+
 .install-phone img{
+
   display:block;
 
   width:100%;
@@ -1606,18 +2128,25 @@ section{
   border-radius:27px;
 
   background:#edf4ff;
+
 }
 
+
 .step-content{
+
   margin-top:22px;
 
   padding:
     0
     12px;
+
 }
 
+
 .step-number{
+
   width:42px;
+
   height:42px;
 
   margin:
@@ -1632,13 +2161,14 @@ section{
   border-radius:14px;
 
   background:
+
     linear-gradient(
       135deg,
       var(--blue),
       var(--blue2)
     );
 
-  color:#fff;
+  color:#ffffff;
 
   font-size:16px;
 
@@ -1647,18 +2177,24 @@ section{
   box-shadow:
     0 10px 25px
     rgba(0,61,165,.22);
+
 }
 
+
 .step-content h3{
+
   margin:
     0
     0
     8px;
 
   font-size:19px;
+
 }
 
+
 .step-content p{
+
   margin:
     0
     auto;
@@ -1670,6 +2206,7 @@ section{
   font-size:13px;
 
   line-height:1.8;
+
 }
 
 
@@ -1678,6 +2215,7 @@ section{
 ========================================================= */
 
 .download{
+
   position:relative;
 
   display:flex;
@@ -1692,19 +2230,23 @@ section{
 
   padding:48px;
 
-  color:#fff;
+  color:#ffffff;
 
   border-radius:30px;
 
   background:
+
     linear-gradient(
       135deg,
       #003da5,
       #0b67ff
     );
+
 }
 
+
 .download::after{
+
   content:"";
 
   position:absolute;
@@ -1720,18 +2262,24 @@ section{
     rgba(255,255,255,.07);
 
   border-radius:50%;
+
 }
 
+
 .download h2{
+
   margin:
     0
     0
     8px;
 
   font-size:34px;
+
 }
 
+
 .download p{
+
   margin:0;
 
   max-width:650px;
@@ -1742,9 +2290,12 @@ section{
   line-height:1.7;
 
   font-size:14px;
+
 }
 
+
 .download .btn{
+
   position:relative;
 
   z-index:1;
@@ -1753,7 +2304,8 @@ section{
 
   color:var(--blue);
 
-  background:#fff;
+  background:#ffffff;
+
 }
 
 
@@ -1762,6 +2314,7 @@ section{
 ========================================================= */
 
 footer{
+
   padding:
     36px
     0
@@ -1772,6 +2325,7 @@ footer{
   text-align:center;
 
   font-size:12px;
+
 }
 
 
@@ -1782,52 +2336,102 @@ footer{
 @media(max-width:950px){
 
   .hero-grid{
+
     grid-template-columns:1fr;
 
     gap:40px;
+
   }
+
 
   .hero{
+
     text-align:center;
+
   }
 
+
   .hero p{
+
     margin-left:auto;
+
     margin-right:auto;
+
   }
+
 
   .actions,
   .trust{
+
     justify-content:center;
+
   }
+
 
   .features{
+
     grid-template-columns:
       repeat(2,1fr);
+
   }
 
+
   .navlinks{
+
     display:none;
+
   }
+
+}
+
+
+@media(max-width:1100px){
+
+  .install-phones{
+
+    grid-template-columns:
+      repeat(3,1fr);
+
+    gap:24px;
+
+  }
+
+  .install-phone{
+
+    width:
+      min(
+        250px,
+        100%
+      );
+
+  }
+
 }
 
 @media(max-width:720px){
 
   .install-phones{
+
     grid-template-columns:1fr;
 
     gap:45px;
+
   }
 
+
   .install-phone{
+
     width:
       min(
         300px,
         80vw
       );
+
   }
 
+
   .download{
+
     flex-direction:column;
 
     align-items:flex-start;
@@ -1835,135 +2439,222 @@ footer{
     padding:
       32px
       25px;
+
   }
 
+
   .download h2{
+
     font-size:28px;
+
   }
+
 }
+
 
 @media(max-width:600px){
 
   .loader-logo-wrap{
+
     width:125px;
+
     height:125px;
+
   }
+
 
   .loader-logo{
+
     width:88px;
+
     height:88px;
+
   }
+
 
   .loader-title{
+
     font-size:27px;
+
     letter-spacing:3px;
+
   }
+
 
   .loader-line{
+
     width:180px;
+
   }
+
 
   .hold-ring{
+
     width:108px;
+
     height:108px;
+
   }
 
+
   .hold-dots{
+
     width:68px;
+
     height:68px;
+
   }
+
 
   .hold-ring.holding
   .hold-dots{
+
     width:80px;
+
     height:80px;
+
   }
+
 
   .hold-ring.ready
   .hold-dots{
+
     width:88px;
+
     height:88px;
+
   }
 
+
   nav{
+
     min-height:72px;
 
     gap:10px;
+
   }
 
+
   .brand-area{
+
     gap:8px;
+
   }
+
 
   .brand-logo,
   .brand-logo img{
+
     width:36px;
+
     height:36px;
+
   }
+
 
   .brand-divider{
+
     height:24px;
+
   }
+
 
   .brand-name{
+
     font-size:14px;
+
   }
 
+
   .header-button{
+
     padding:
       11px
       13px;
 
     font-size:12px;
+
   }
+
 
   .features{
+
     grid-template-columns:1fr;
+
   }
+
 
   h1{
+
     letter-spacing:-1.8px;
+
   }
+
 
   .hero p{
+
     font-size:16px;
+
   }
+
 
   .actions{
+
     flex-direction:column;
+
   }
 
+
   .actions .btn{
+
     width:100%;
+
   }
+
 }
+
 
 @media(max-width:430px){
 
   .brand-name{
+
     display:none;
+
   }
+
 
   .brand-divider:last-of-type{
+
     display:none;
+
   }
 
+
   .brand-area{
+
     gap:7px;
+
   }
+
 
   .brand-logo,
   .brand-logo img{
+
     width:34px;
+
     height:34px;
+
   }
 
+
   .header-button{
+
     padding:
       10px
       12px;
 
     font-size:11px;
+
   }
 
 }
@@ -1982,14 +2673,15 @@ footer{
 
 <div id="pageLoader">
 
+
   <div class="loader-bg-glow"></div>
+
 
   <div class="loader-content">
 
 
-    <!-- LOGO -->
-
     <div class="loader-logo-wrap">
+
 
       <div class="loader-ring ring-1"></div>
 
@@ -2007,10 +2699,9 @@ footer{
 
       </div>
 
+
     </div>
 
-
-    <!-- TITLE -->
 
     <div class="loader-title">
 
@@ -2019,16 +2710,12 @@ footer{
     </div>
 
 
-    <!-- SUBTITLE -->
-
     <div class="loader-subtitle">
 
       CATHS-MAIN Student Voice
 
     </div>
 
-
-    <!-- LOADING BAR -->
 
     <div class="loader-line">
 
@@ -2045,14 +2732,16 @@ footer{
       <div
         class="hold-ring"
         id="holdRing"
+        tabindex="0"
+        role="button"
+        aria-label="Press and hold to enter website"
       >
 
-
-        <!-- CIRCULAR PROGRESS -->
 
         <svg
           class="hold-progress"
           viewBox="0 0 100 100"
+          aria-hidden="true"
         >
 
           <circle
@@ -2071,21 +2760,19 @@ footer{
             r="43"
           ></circle>
 
+
         </svg>
 
 
-        <!-- THREE DOTS -->
+        <div class="hold-dots">
 
-        <div
-          class="hold-dots"
-          id="holdDots"
-        >
 
           <span></span>
 
           <span></span>
 
           <span></span>
+
 
         </div>
 
@@ -2108,6 +2795,7 @@ footer{
 
   </div>
 
+
 </div>
 
 
@@ -2126,12 +2814,8 @@ footer{
 <nav>
 
 
-  <!-- LEFT BRAND -->
-
   <div class="brand-area">
 
-
-    <!-- CATHS-MAIN LOGO -->
 
     <div class="brand-logo">
 
@@ -2146,8 +2830,6 @@ footer{
     <div class="brand-divider"></div>
 
 
-    <!-- SSLG LOGO -->
-
     <div class="brand-logo">
 
       <img
@@ -2161,8 +2843,6 @@ footer{
     <div class="brand-divider"></div>
 
 
-    <!-- NAME -->
-
     <div class="brand-name">
 
       CATHS-MAIN SSLG
@@ -2173,26 +2853,26 @@ footer{
   </div>
 
 
-  <!-- LINKS -->
-
   <div class="navlinks">
+
 
     <a href="#features">
       Features
     </a>
 
+
     <a href="#install">
       How to Install
     </a>
+
 
     <a href="#download">
       Download
     </a>
 
+
   </div>
 
-
-  <!-- GET APP -->
 
   <a
     class="btn btn-primary header-button"
@@ -2259,7 +2939,7 @@ footer{
     <div class="actions">
 
 
-      <!-- DIRECT APK DOWNLOAD -->
+      <!-- DIRECT APK -->
 
       <a
         class="btn btn-primary"
@@ -2287,17 +2967,21 @@ footer{
 
     <div class="trust">
 
+
       <span>
         ✓ Student Voice
       </span>
+
 
       <span>
         ✓ Real-time Community
       </span>
 
+
       <span>
         ✓ School Updates
       </span>
+
 
     </div>
 
@@ -2320,12 +3004,8 @@ footer{
       <div class="screen">
 
 
-        <!-- PHONE TOP -->
-
         <div class="topbar">
 
-
-          <!-- TWO LOGOS -->
 
           <div class="mini-brand">
 
@@ -2374,8 +3054,6 @@ footer{
 
         </div>
 
-
-        <!-- PHONE CONTENT -->
 
         <div class="cards">
 
@@ -2434,8 +3112,6 @@ footer{
 
         </div>
 
-
-        <!-- PHONE NAV -->
 
         <div class="navmock">
 
@@ -2531,11 +3207,8 @@ footer{
 </div>
 
 
-
 <div class="features">
 
-
-  <!-- NEWS -->
 
   <div class="feature">
 
@@ -2548,17 +3221,13 @@ footer{
     </h3>
 
     <p>
-
       See official school updates,
       posts, comments, reactions,
       sharing, and publishing tools.
-
     </p>
 
   </div>
 
-
-  <!-- MESSAGES -->
 
   <div class="feature">
 
@@ -2571,18 +3240,14 @@ footer{
     </h3>
 
     <p>
-
       Chat with friends,
       create group chats,
       manage members,
       and share messages.
-
     </p>
 
   </div>
 
-
-  <!-- FRIENDS -->
 
   <div class="feature">
 
@@ -2595,18 +3260,14 @@ footer{
     </h3>
 
     <p>
-
       Find classmates,
       send requests,
       view friends,
       and manage connections.
-
     </p>
 
   </div>
 
-
-  <!-- GUIDANCE -->
 
   <div class="feature">
 
@@ -2619,17 +3280,13 @@ footer{
     </h3>
 
     <p>
-
       Send guidance requests
       and connect student support
       with school workflows.
-
     </p>
 
   </div>
 
-
-  <!-- VOICE -->
 
   <div class="feature">
 
@@ -2642,16 +3299,12 @@ footer{
     </h3>
 
     <p>
-
       Submit concerns and suggestions
       and make your voice heard.
-
     </p>
 
   </div>
 
-
-  <!-- PROFILE -->
 
   <div class="feature">
 
@@ -2664,17 +3317,13 @@ footer{
     </h3>
 
     <p>
-
       Student profiles,
       posts, comments,
       reactions, and profile editing.
-
     </p>
 
   </div>
 
-
-  <!-- ACTIVITY -->
 
   <div class="feature">
 
@@ -2687,17 +3336,13 @@ footer{
     </h3>
 
     <p>
-
       Stay updated with activity
       across news, friends,
       messages, and posts.
-
     </p>
 
   </div>
 
-
-  <!-- APP -->
 
   <div class="feature">
 
@@ -2710,11 +3355,9 @@ footer{
     </h3>
 
     <p>
-
       Enjoy a mobile-friendly
       experience designed for
       the CATHS community.
-
     </p>
 
   </div>
@@ -2728,7 +3371,7 @@ footer{
 
 
 <!-- =====================================================
-     HOW TO INSTALL
+     INSTALLATION
 ===================================================== -->
 
 <section
@@ -2736,51 +3379,37 @@ footer{
   class="install-section"
 >
 
-
 <div class="section-head">
 
-
   <h2>
-
     How to install CATHS-MAIN
-
   </h2>
 
-
   <p>
-
-    Follow these three simple steps
-    to install the app on Android.
-
+    Follow these five simple steps
+    to get the full CATHS-MAIN experience on Android.
   </p>
-
 
 </div>
 
 
-
 <div class="install-phones">
-
 
   <!-- STEP 1 -->
 
   <div class="install-item">
 
-
     <div class="install-phone">
-
 
       <img
         src="image1.png"
-        alt="Step 1 installation"
+        alt="Step 1: Download the app through the website"
       >
-
 
     </div>
 
 
     <div class="step-content">
-
 
       <div class="step-number">
         1
@@ -2793,16 +3422,13 @@ footer{
 
 
       <p>
-
-        Tap the download button
-        and save the CATHS-MAIN APK
-        to your Android device.
-
+        Visit the official website
+        and tap the download button
+        to download the CATHS-MAIN APK
+        to your Android phone.
       </p>
 
-
     </div>
-
 
   </div>
 
@@ -2812,21 +3438,17 @@ footer{
 
   <div class="install-item">
 
-
     <div class="install-phone">
-
 
       <img
         src="image2.png"
-        alt="Step 2 installation"
+        alt="Step 2: Open the downloaded APK"
       >
-
 
     </div>
 
 
     <div class="step-content">
-
 
       <div class="step-number">
         2
@@ -2839,16 +3461,12 @@ footer{
 
 
       <p>
-
-        Open the downloaded APK
-        and allow your device
-        to install the application.
-
+        After downloading, open the APK
+        from your phone and complete
+        the installation of CATHS-MAIN.
       </p>
 
-
     </div>
-
 
   </div>
 
@@ -2858,21 +3476,17 @@ footer{
 
   <div class="install-item">
 
-
     <div class="install-phone">
-
 
       <img
         src="image3.png"
-        alt="Step 3 installation"
+        alt="Step 3: Download the app again for the full experience"
       >
-
 
     </div>
 
 
     <div class="step-content">
-
 
       <div class="step-number">
         3
@@ -2880,21 +3494,95 @@ footer{
 
 
       <h3>
-        Install & Open
+        Download It Again
       </h3>
 
 
       <p>
-
-        Finish the installation,
-        open CATHS-MAIN,
-        and sign in to your account.
-
+        To unlock the full features
+        and remove the website address
+        bar at the top, download and
+        install the app again using
+        the official download.
       </p>
-
 
     </div>
 
+  </div>
+
+
+
+  <!-- STEP 4 -->
+
+  <div class="install-item">
+
+    <div class="install-phone">
+
+      <img
+        src="image4.png"
+        alt="Step 4: Remove the old app"
+      >
+
+    </div>
+
+
+    <div class="step-content">
+
+      <div class="step-number">
+        4
+      </div>
+
+
+      <h3>
+        Remove the Old App
+      </h3>
+
+
+      <p>
+        Once the new installation is
+        complete, you can remove the
+        older app from your phone.
+      </p>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- STEP 5 -->
+
+  <div class="install-item">
+
+    <div class="install-phone">
+
+      <img
+        src="image5.png"
+        alt="Step 5: Enjoy the app and show your voice"
+      >
+
+    </div>
+
+
+    <div class="step-content">
+
+      <div class="step-number">
+        5
+      </div>
+
+
+      <h3>
+        Enjoy & Show Your Voice
+      </h3>
+
+
+      <p>
+        You're all set! Enjoy the
+        CATHS-MAIN app, stay connected,
+        and let your voice be heard.
+      </p>
+
+    </div>
 
   </div>
 
@@ -2907,7 +3595,7 @@ footer{
 
 
 <!-- =====================================================
-     DOWNLOAD CTA
+     DOWNLOAD
 ===================================================== -->
 
 <section id="download">
@@ -2984,20 +3672,24 @@ document.addEventListener(
   "DOMContentLoaded",
   function(){
 
+
     const pageLoader =
       document.getElementById(
         "pageLoader"
       );
+
 
     const holdRing =
       document.getElementById(
         "holdRing"
       );
 
+
     const holdFill =
       document.getElementById(
         "holdFill"
       );
+
 
     const holdLabel =
       document.getElementById(
@@ -3005,9 +3697,9 @@ document.addEventListener(
       );
 
 
-    /* =====================================================
+    /* ==========================================
        SETTINGS
-    ===================================================== */
+    ========================================== */
 
     const HOLD_TIME = 3000;
 
@@ -3023,35 +3715,43 @@ document.addEventListener(
     let animationFrame = null;
 
 
-    /* =====================================================
-       RESET
-    ===================================================== */
+    /* ==========================================
+       FORCE TOP
+    ========================================== */
 
-    function resetHold(){
+    function forceTop(){
 
-      if(completed){
-        return;
-      }
-
-      holding = false;
-
-      holdRing.classList.remove(
-        "holding",
-        "ready"
-      );
-
-      holdFill.style.strokeDashoffset =
-        CIRCUMFERENCE;
-
-      holdLabel.textContent =
-        "PRESS & HOLD";
+      window.scrollTo({
+        top:0,
+        left:0,
+        behavior:"auto"
+      });
 
     }
 
 
-    /* =====================================================
-       UPDATE PROGRESS
-    ===================================================== */
+    forceTop();
+
+
+    /* ==========================================
+       REMOVE HASH
+    ========================================== */
+
+    if(window.location.hash){
+
+      history.replaceState(
+        null,
+        "",
+        window.location.pathname +
+        window.location.search
+      );
+
+    }
+
+
+    /* ==========================================
+       UPDATE HOLD
+    ========================================== */
 
     function updateHold(){
 
@@ -3085,9 +3785,7 @@ document.addEventListener(
         offset;
 
 
-      /* STARTED */
-
-      if(progress > .02){
+      if(progress > 0){
 
         holdRing.classList.add(
           "holding"
@@ -3098,8 +3796,6 @@ document.addEventListener(
 
       }
 
-
-      /* NEAR COMPLETE */
 
       if(progress >= .78){
 
@@ -3112,8 +3808,6 @@ document.addEventListener(
 
       }
 
-
-      /* COMPLETE */
 
       if(progress >= 1){
 
@@ -3132,9 +3826,9 @@ document.addEventListener(
     }
 
 
-    /* =====================================================
+    /* ==========================================
        START HOLD
-    ===================================================== */
+    ========================================== */
 
     function startHold(event){
 
@@ -3182,13 +3876,13 @@ document.addEventListener(
     }
 
 
-    /* =====================================================
-       RELEASE
-    ===================================================== */
+    /* ==========================================
+       END HOLD
+    ========================================== */
 
     function endHold(event){
 
-      if(event && event.cancelable){
+      if(event){
 
         event.preventDefault();
 
@@ -3248,9 +3942,9 @@ document.addEventListener(
     }
 
 
-    /* =====================================================
-       OPEN WEBSITE
-    ===================================================== */
+    /* ==========================================
+       FINISH
+    ========================================== */
 
     function finishOpening(){
 
@@ -3286,9 +3980,7 @@ document.addEventListener(
         "WELCOME TO CATHS-MAIN";
 
 
-      /*
-        BIG GLOW
-      */
+      /* BEAUTIFUL BLOOM */
 
       setTimeout(
         function(){
@@ -3298,19 +3990,29 @@ document.addEventListener(
 
 
           holdRing.style.filter =
-            "drop-shadow(0 0 30px rgba(135,215,255,.9))";
+            "drop-shadow(0 0 32px rgba(135,215,255,.95))";
+
+
+          holdRing
+            .querySelector(".hold-dots")
+            .style.transform =
+              "scale(1.18)";
+
 
         },
         80
       );
 
 
-      /*
-        OPEN WEBSITE
-      */
+      /* OPEN WEBSITE */
 
       setTimeout(
         function(){
+
+          /* Always reveal Hero */
+
+          forceTop();
+
 
           pageLoader.classList.add(
             "hide"
@@ -3322,16 +4024,27 @@ document.addEventListener(
           );
 
 
+          /* One final top reset */
+
+          requestAnimationFrame(
+            function(){
+
+              forceTop();
+
+            }
+          );
+
+
         },
-        850
+        900
       );
 
     }
 
 
-    /* =====================================================
-       TOUCH + MOUSE
-    ===================================================== */
+    /* ==========================================
+       POINTER EVENTS
+    ========================================== */
 
     holdRing.addEventListener(
       "pointerdown",
@@ -3351,11 +4064,7 @@ document.addEventListener(
     );
 
 
-    /*
-      Desktop:
-      if mouse leaves the circle
-      before 3 seconds, cancel.
-    */
+    /* Desktop mouse cancellation */
 
     holdRing.addEventListener(
       "pointerleave",
@@ -3374,15 +4083,9 @@ document.addEventListener(
     );
 
 
-    /* =====================================================
+    /* ==========================================
        KEYBOARD SUPPORT
-    ===================================================== */
-
-    holdRing.setAttribute(
-      "tabindex",
-      "0"
-    );
-
+    ========================================== */
 
     holdRing.addEventListener(
       "keydown",
@@ -3422,9 +4125,9 @@ document.addEventListener(
     );
 
 
-    /* =====================================================
-       PREVENT LONG-PRESS MENU
-    ===================================================== */
+    /* ==========================================
+       NO CONTEXT MENU
+    ========================================== */
 
     holdRing.addEventListener(
       "contextmenu",
@@ -3434,6 +4137,7 @@ document.addEventListener(
 
       }
     );
+
 
   }
 );
